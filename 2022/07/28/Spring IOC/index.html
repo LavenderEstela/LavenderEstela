@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Spring IOC | CimaogのBighouse</title><meta name="keywords" content="Spring"><meta name="author" content="Cimaog,295376682@qq.com"><meta name="copyright" content="Cimaog"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="##Spring IOC 1.SpringIOC的理解、原理与实现 ioc容器的创建过程（beanFactory、DefaultListableBeanFactory），向bean工厂中设置参数（BeanPostProceedsor、Aware接口的子类） 加载解析bean对象，准备要创建的bean对象的定义对象beanDefinition（xml或者注解的解析过程） beanFactoryPos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring IOC">
+<meta property="og:url" content="https://cimaog.top/2022/07/28/Spring%20IOC/index.html">
+<meta property="og:site_name" content="CimaogのBighouse">
+<meta property="og:description" content="##Spring IOC 1.SpringIOC的理解、原理与实现 ioc容器的创建过程（beanFactory、DefaultListableBeanFactory），向bean工厂中设置参数（BeanPostProceedsor、Aware接口的子类） 加载解析bean对象，准备要创建的bean对象的定义对象beanDefinition（xml或者注解的解析过程） beanFactoryPos">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg">
+<meta property="article:published_time" content="2022-07-28T05:23:02.000Z">
+<meta property="article:modified_time" content="2022-10-12T01:29:02.145Z">
+<meta property="article:author" content="Cimaog">
+<meta property="article:tag" content="Spring">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg"><link rel="shortcut icon" href="/./img/favicon.png"><link rel="canonical" href="https://cimaog.top/2022/07/28/Spring%20IOC/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Spring IOC',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-10-12 09:29:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/xxx.css"><meta name="generator" content="Hexo 6.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202004%2F22%2F20200422144832_tifry.jpg&amp;refer=http%3A%2F%2Fc-ssl.duitang.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1661137344&amp;t=a1da2f337fbd4983ffa24791e75e0e71" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">CimaogのBighouse</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Spring IOC</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-07-28T05:23:02.000Z" title="发表于 2022-07-28 13:23:02">2022-07-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-12T01:29:02.145Z" title="更新于 2022-10-12 09:29:02">2022-10-12</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Spring IOC"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>##Spring IOC</p>
+<h3 id="1-SpringIOC的理解、原理与实现"><a href="#1-SpringIOC的理解、原理与实现" class="headerlink" title="1.SpringIOC的理解、原理与实现"></a>1.SpringIOC的理解、原理与实现</h3><ul>
+<li>ioc容器的创建过程（beanFactory、DefaultListableBeanFactory），向bean工厂中设置参数（BeanPostProceedsor、Aware接口的子类）</li>
+<li>加载解析bean对象，准备要创建的bean对象的定义对象beanDefinition（xml或者注解的解析过程）</li>
+<li>beanFactoryPostProcessor的处理，此处是拓展点，PlaceHolderConfigurSupport,ConfigurationClassPostProcessor</li>
+<li>BeanPostProcessor的注册功能，方便后续对bean对象完成具体的扩展功能</li>
+<li>通过反射的方式将BeanDefinition对象实例化成具体的bean对象</li>
+<li>bean对象的初始化工程（填充属性、调用aware子类的方法、调用BeanPostProcessor前置处理方法、调用init-method方法、调用BeanPostProcessor的后置处理方法）</li>
+<li>生成完整的bean对象，通过getBean方法可以直接获取</li>
+<li>销毁过程。接口DisposableBean方法destroy。</li>
+</ul>
+<h4 id="1-1-IOC是将对象交给容器管理，原来对象由使用者控制，现有spring控制"><a href="#1-1-IOC是将对象交给容器管理，原来对象由使用者控制，现有spring控制" class="headerlink" title="1.1 IOC是将对象交给容器管理，原来对象由使用者控制，现有spring控制"></a>1.1 IOC是将对象交给容器管理，原来对象由使用者控制，现有spring控制</h4><h5 id="简要思路："><a href="#简要思路：" class="headerlink" title="简要思路："></a>简要思路：</h5><p>管理什么？-》<strong>Service + Dao</strong></p>
+<p>如何将被管理的对象告知IOC容器-》<strong>配置</strong></p>
+<p>被管理的对象交给IOC容器，如何获取到IOC容器？-》<strong>接口</strong></p>
+<p>IOC容器得到后，如何从容器中获取bean？-》<strong>接口方法</strong></p>
+<p>使用Spring导入哪些坐标？-》<strong>pom.xml</strong></p>
+<h5 id="具体步骤："><a href="#具体步骤：" class="headerlink" title="具体步骤："></a>具体步骤：</h5><ol>
+<li><p>导入spring的坐标spring-context</p>
+</li>
+<li><p>配置bean（别配接口，配实现类，要拿bean造对象）</p>
+<p>bean标签表示配置bean、id属性表示给bean起名字、class属性表示给bean定义类型</p>
+</li>
+<li><p>获取IOC容器</p>
+</li>
+<li><p>通过当时定义的id获取bean</p>
+</li>
+</ol>
+<h4 id="1-2-DI依赖注入，把对应的属性值注入对象"><a href="#1-2-DI依赖注入，把对应的属性值注入对象" class="headerlink" title="1.2 DI依赖注入，把对应的属性值注入对象"></a>1.2 DI依赖注入，把对应的属性值注入对象</h4><h5 id="简要思路：-1"><a href="#简要思路：-1" class="headerlink" title="简要思路："></a>简要思路：</h5><p>基于IOC管理bean</p>
+<p>Service中使用new形式创建的Dao对象是否保留？-》<strong>否</strong></p>
+<p>Service中需要Dao对象如何进入到Service？-》<strong>提供方法</strong></p>
+<p>Service与Dao间的关系如何描述？-》<strong>配置</strong></p>
+<h5 id="具体步骤：-1"><a href="#具体步骤：-1" class="headerlink" title="具体步骤："></a>具体步骤：</h5><p>1.删除使用new形式创建对象的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">private XXXDao XXXDao;</span><br></pre></td></tr></table></figure>
+
+<p>2.提供依赖对象对应的setter方法</p>
+<p>3.配置service与dao之间的关系</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;property name=&quot;XXXDao属性名称&quot; ref=&quot;id名称&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>4.通过当时定义的id获取bean</p>
+<p>IOC体系结构设计</p>
+<p><a target="_blank" rel="noopener" href="https://postimg.cc/rKkJn6zM">spring-framework-ioc-source-7.png</a></p>
+<ul>
+<li><p><strong>BeanFactory： 工厂模式定义了IOC容器的基本功能规范</strong></p>
+<p>BeanFactory 有三个子类：ListableBeanFactory、HierarchicalBeanFactory 和AutowireCapableBeanFactory，而BeanFactory定义多层次接口的原因在于<strong>区分在 Spring 内部在操作过程中对象的传递和转化过程中，对对象的数据访问所做的限制</strong>。 </p>
+</li>
+<li><p><strong>BeanRegistry： 向IOC容器手工注册 BeanDefinition 对象的方法</strong></p>
+<p>Spring 配置文件中每一个<code>&lt;bean&gt;</code>节点元素在 Spring 容器里都通过一个 BeanDefinition 对象表示，它描述了 Bean 的配置信息。而 BeanDefinitionRegistry 接口提供了向容器手工注册 BeanDefinition 对象的方法。</p>
+</li>
+<li><h5 id="BeanDefinition：各种Bean对象及其相互的关系"><a href="#BeanDefinition：各种Bean对象及其相互的关系" class="headerlink" title="BeanDefinition：各种Bean对象及其相互的关系"></a>BeanDefinition：各种Bean对象及其相互的关系</h5><blockquote>
+<p>Bean对象存在依赖嵌套等关系，所以设计者设计了BeanDefinition，它用来对Bean对象及关系定义；我们在理解时只需要抓住如下三个要点：</p>
+<ul>
+<li><strong>BeanDefinition 定义了各种Bean对象及其相互的关系</strong></li>
+<li><strong>BeanDefinitionReader 这是BeanDefinition的解析器</strong></li>
+<li><strong>BeanDefinitionHolder 这是BeanDefination的包装类，用来存储BeanDefinition，name以及aliases等。</strong></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://postimg.cc/bGJzbNnJ">spring-framework-ioc-source-71.png</a></p>
+<h4 id="1-3Spring初始化和创建对象流程"><a href="#1-3Spring初始化和创建对象流程" class="headerlink" title="1.3Spring初始化和创建对象流程"></a>1.3Spring初始化和创建对象流程</h4><h5 id="初始化："><a href="#初始化：" class="headerlink" title="初始化："></a>初始化：</h5><p><strong>第一个过程：BeanDifinition的Resource定位</strong></p>
+<p>这个Resource定位指的是BeanDifinition的资源定位，它由ResourceLoader通过统一的Resource接口来完成，这个Resource对各种形式的BeanDifinition的使用都提供了统一的接口。</p>
+<p>对于这些BeanDifinition的存在形式，相信大家都不会感到陌生。比如，</p>
+<p>在文件系统中的Bean定义信息可以使用FileSystemResource来进行抽象。</p>
+<p>在类路劲中的Bean定义信息可以使用ClassPathResource。</p>
+<p>这个定位过程类似于容器寻找数据的过程，就想水桶装水先要把水找到一样。</p>
+<p><strong>第二个过程：BeanDifinition的载入</strong></p>
+<p>这个载入过程是把用户定义好的Bean表示成Ioc容器内部的数据结构，而这个容器内部的数据结构就是BeanDifinition。具体来说，BeanDifinition实际上就是POJO对象在IOC容器中的抽象，通过这个BeanDifinition定义的数据结构，使IOC容器能够方便的对POJO对象也就是Bean进行管理。</p>
+<p><strong>第三个过程：BeanDifinition的注册</strong></p>
+<p>这个操作是通过调用BeanDifinitionRegistry借口来实现的。这个注册过程把载入过程中解析得到的BeanDifinition向Ioc容器进行注册。在阅读源码中可知，在IOC容器内部将BeanDifinition注入到一个HashMap中去，Ioc容器就是通过这个HashMap来持有这些BeanDifinition数据的。<br><a target="_blank" rel="noopener" href="https://postimg.cc/jw35j7wX">spring-framework-ioc-source-9.png</a></p>
+<h3 id="2-Spring-IOC的底层实现"><a href="#2-Spring-IOC的底层实现" class="headerlink" title="2.Spring IOC的底层实现"></a>2.Spring IOC的底层实现</h3><p>原理：xml解析、工厂模式、反射。 </p>
+<ul>
+<li>先通过createBeanFactory创建出一个Bean工厂</li>
+<li>开始循环创建对象，优先通过getBean、doGetBean从容器中查找（容器中bean为单例模式）</li>
+<li>若容器中找不到，则通过createBean、doCreatBean方法，以及反射的方式创建对象，一般情况下是使用的是无参构造器（getDeclareConstructor、newInstance）</li>
+<li>进行对象的属性填充populateBean</li>
+<li>进行其他初始化操作initializingBean</li>
+</ul>
+<h3 id="3-bean的生命周期"><a href="#3-bean的生命周期" class="headerlink" title="3.bean的生命周期"></a>3.bean的生命周期</h3><ol>
+<li>实例化bean：反射的方式生成对象</li>
+<li>填充bean的属性：populateBean（），循环依赖的问题（三级缓存）</li>
+<li>调用aware接口相关的方法：invokeAwareMethod（完成BeanName，BeanFactory，BeanClassLoader对象的属性设置）</li>
+<li>调用BeanPostProcessor中的前置处理方法：使用比较多的有（ApplicationContextPostProcessor设置ApplicationContext，Environment，ResourceLoader、EmbenddValueResolver等对象）</li>
+<li>调用initmethod方法：invokerInitmethod（），判断是否实现了initlizingBean接口，如果有，调用afterPropertiesSet方法，没有就不调用</li>
+<li>调用BeanPostProcess的后置处理方法：spring的aop就是在此处实现的，AbstractAutoProxyCreator注册Destuction相关的回调接口：钩子函数</li>
+<li>获取完整的对象，可以通过getBean的方式来进行对象的获取</li>
+<li>销毁流程：1.判断是否实现了DispoableBean接口。2.调用destroyMethod方法</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://postimg.cc/zVFb0QhK"><img src="/" alt="spring-framework-ioc-source-102.png"></a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://cimaog.top">Cimaog</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://cimaog.top/2022/07/28/Spring%20IOC/">https://cimaog.top/2022/07/28/Spring%20IOC/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://cimaog.top" target="_blank">CimaogのBighouse</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Spring/">Spring</a></div><div class="post_share"><div class="social-share" data-image="https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2022/09/18/%E8%B0%B7%E7%B2%92%E5%AD%A6%E8%8B%91/"><img class="prev-cover" src="https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">《谷粒学苑》项目</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202004%2F22%2F20200422144832_tifry.jpg&amp;refer=http%3A%2F%2Fc-ssl.duitang.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1661137344&amp;t=a1da2f337fbd4983ffa24791e75e0e71" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Cimaog</div><div class="author-info__description">个人技术博客 | 日常生活分享</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/LavenderEstela" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:295376682luna@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-SpringIOC%E7%9A%84%E7%90%86%E8%A7%A3%E3%80%81%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0"><span class="toc-text">1.SpringIOC的理解、原理与实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-IOC%E6%98%AF%E5%B0%86%E5%AF%B9%E8%B1%A1%E4%BA%A4%E7%BB%99%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86%EF%BC%8C%E5%8E%9F%E6%9D%A5%E5%AF%B9%E8%B1%A1%E7%94%B1%E4%BD%BF%E7%94%A8%E8%80%85%E6%8E%A7%E5%88%B6%EF%BC%8C%E7%8E%B0%E6%9C%89spring%E6%8E%A7%E5%88%B6"><span class="toc-text">1.1 IOC是将对象交给容器管理，原来对象由使用者控制，现有spring控制</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AE%80%E8%A6%81%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="toc-text">简要思路：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-text">具体步骤：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-DI%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%EF%BC%8C%E6%8A%8A%E5%AF%B9%E5%BA%94%E7%9A%84%E5%B1%9E%E6%80%A7%E5%80%BC%E6%B3%A8%E5%85%A5%E5%AF%B9%E8%B1%A1"><span class="toc-text">1.2 DI依赖注入，把对应的属性值注入对象</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AE%80%E8%A6%81%E6%80%9D%E8%B7%AF%EF%BC%9A-1"><span class="toc-text">简要思路：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%AD%A5%E9%AA%A4%EF%BC%9A-1"><span class="toc-text">具体步骤：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#BeanDefinition%EF%BC%9A%E5%90%84%E7%A7%8DBean%E5%AF%B9%E8%B1%A1%E5%8F%8A%E5%85%B6%E7%9B%B8%E4%BA%92%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-text">BeanDefinition：各种Bean对象及其相互的关系</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3Spring%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E6%B5%81%E7%A8%8B"><span class="toc-text">1.3Spring初始化和创建对象流程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%EF%BC%9A"><span class="toc-text">初始化：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Spring-IOC%E7%9A%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="toc-text">2.Spring IOC的底层实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-bean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">3.bean的生命周期</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/10/17/AWS%20SAA%20C03/" title="AWS SAA C03"><img src="https://w.wallhaven.cc/full/gp/wallhaven-gpj73e.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AWS SAA C03"/></a><div class="content"><a class="title" href="/2022/10/17/AWS%20SAA%20C03/" title="AWS SAA C03">AWS SAA C03</a><time datetime="2022-10-17T02:58:47.000Z" title="发表于 2022-10-17 10:58:47">2022-10-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/07/CS61A/" title="UCB CS61A"><img src="https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UCB CS61A"/></a><div class="content"><a class="title" href="/2022/10/07/CS61A/" title="UCB CS61A">UCB CS61A</a><time datetime="2022-10-07T12:43:58.000Z" title="发表于 2022-10-07 20:43:58">2022-10-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/07/Hadoop/" title="Hadoop【连载中】"><img src="https://w.wallhaven.cc/full/yx/wallhaven-yx7p77.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hadoop【连载中】"/></a><div class="content"><a class="title" href="/2022/10/07/Hadoop/" title="Hadoop【连载中】">Hadoop【连载中】</a><time datetime="2022-10-07T12:43:58.000Z" title="发表于 2022-10-07 20:43:58">2022-10-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/07/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82/" title="硅谷课堂【上】"><img src="https://w.wallhaven.cc/full/vq/wallhaven-vqxlgm.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="硅谷课堂【上】"/></a><div class="content"><a class="title" href="/2022/10/07/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82/" title="硅谷课堂【上】">硅谷课堂【上】</a><time datetime="2022-10-07T12:43:58.000Z" title="发表于 2022-10-07 20:43:58">2022-10-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/07/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/" title="项目设计"><img src="https://w.wallhaven.cc/full/vq/wallhaven-vqxlgm.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="项目设计"/></a><div class="content"><a class="title" href="/2022/10/07/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/" title="项目设计">项目设计</a><time datetime="2022-10-07T12:43:58.000Z" title="发表于 2022-10-07 20:43:58">2022-10-07</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 By Cimaog</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a><span class="footer-separator">|</span><span>备案 </span><a target="_blank" rel="noopener" href="http://www.beian.miit.gov.cn/">豫ICP备2022017550号</a></div><div class="footer_custom_text">相逢即是缘，来了就留下叭~😄</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="60198" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true"> </div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"live2d-widget-model-nipsilon"},"display":{"position":"right","width":280,"height":400},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
