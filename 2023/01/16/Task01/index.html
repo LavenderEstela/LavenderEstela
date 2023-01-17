@@ -1,0 +1,367 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Task01 | CimaogのBighouse</title><meta name="keywords" content="数据分析"><meta name="author" content="Cimaog,295376682@qq.com"><meta name="copyright" content="Cimaog"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Task01第一节1.导包对于基础小白，第一次接触 Jupyter的小孩，在网页运行时，注意不要把黑框关掉，不然不能正常使用Jupyter，会显示 Server Connection Error  另外是在启动 Jupyter时启动位置不同则打开的文件夹也不同。 推荐安装教程：https:&#x2F;&#x2F;blog.csdn.net&#x2F;fakejvruo&#x2F;article&#x2F;details&#x2F;124409158 2.载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Task01">
+<meta property="og:url" content="https://cimaog.top/2023/01/16/Task01/index.html">
+<meta property="og:site_name" content="CimaogのBighouse">
+<meta property="og:description" content="Task01第一节1.导包对于基础小白，第一次接触 Jupyter的小孩，在网页运行时，注意不要把黑框关掉，不然不能正常使用Jupyter，会显示 Server Connection Error  另外是在启动 Jupyter时启动位置不同则打开的文件夹也不同。 推荐安装教程：https:&#x2F;&#x2F;blog.csdn.net&#x2F;fakejvruo&#x2F;article&#x2F;details&#x2F;124409158 2.载">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg">
+<meta property="article:published_time" content="2023-01-16T07:09:44.000Z">
+<meta property="article:modified_time" content="2023-01-17T07:39:48.716Z">
+<meta property="article:author" content="Cimaog">
+<meta property="article:tag" content="数据分析">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg"><link rel="shortcut icon" href="/./img/favicon.png"><link rel="canonical" href="https://cimaog.top/2023/01/16/Task01/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Task01',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2023-01-17 15:39:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/xxx.css"><meta name="generator" content="Hexo 6.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202004%2F22%2F20200422144832_tifry.jpg&amp;refer=http%3A%2F%2Fc-ssl.duitang.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1661137344&amp;t=a1da2f337fbd4983ffa24791e75e0e71" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">CimaogのBighouse</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Task01</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-16T07:09:44.000Z" title="发表于 2023-01-16 15:09:44">2023-01-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-17T07:39:48.716Z" title="更新于 2023-01-17 15:39:48">2023-01-17</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Task01"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Task01"><a href="#Task01" class="headerlink" title="Task01"></a>Task01</h1><h2 id="第一节"><a href="#第一节" class="headerlink" title="第一节"></a>第一节</h2><h3 id="1-导包"><a href="#1-导包" class="headerlink" title="1.导包"></a>1.导包</h3><p>对于基础小白，第一次接触 Jupyter的小孩，在网页运行时，注意不要把黑框关掉，不然不能正常使用Jupyter，会显示 <strong>Server Connection Error</strong></p>
+<p><img src="/1673925619699.png" alt="1673925619699"></p>
+<p>另外是在启动 Jupyter时启动位置不同则打开的文件夹也不同。</p>
+<p>推荐安装教程：<a target="_blank" rel="noopener" href="https://blog.csdn.net/fakejvruo/article/details/124409158">https://blog.csdn.net/fakejvruo/article/details/124409158</a></p>
+<h3 id="2-载入数据"><a href="#2-载入数据" class="headerlink" title="2.载入数据"></a>2.载入数据</h3><h4 id="1）数据的载入方式"><a href="#1）数据的载入方式" class="headerlink" title="1）数据的载入方式"></a>1）数据的载入方式</h4><p>第一种载入数据方式：使用相对路径载入数据</p>
+<p>报错内容：<strong>FIleNotFoundError</strong>，原因是数据没有放在同一个文件夹下。</p>
+<p>可以使用os.getcwd()查看当前工作目录，然后查找数据集是否在同一文件夹下。</p>
+<p>第二种载入数据方式：使用绝对路径载入数据</p>
+<p>使用绝对路径成功，只要是没有打错名称</p>
+<p><img src="/1673926568197.png" alt="1673926568197"></p>
+<p>【思考】使用pd.read_csv()与pd.read_table()的区别是csv会更加直观，将每个属性（列）都列出来了。而table将所有属性（列）放到了一起。</p>
+<p><img src="/1673926774111.png" alt="1673926774111"></p>
+<p>【补充】TSV与CSV的区别：TSV 是Tab-separated values的缩写，即制表符分隔值，是用制表符（Tab,’\t’）作为字段值的分隔符；CSV，Comma-separated values是用半角逗号（’,’）作为字段值的分隔符； </p>
+<h4 id="2）逐块读取"><a href="#2）逐块读取" class="headerlink" title="2）逐块读取"></a>2）逐块读取</h4><p>【思考】逐块读取：将数据分成小块按块读入，得到的对象指向多个分块对象，在提取数据时才将数据提取进来，没有将实际数据先读入。</p>
+<p>【原因】提高读取效率，在文件过大时，逐块读取可以将大文件切分成小文件，大大降低内存使用量但是消耗了时间。</p>
+<p>【补充】read_csv中有个参数chunksize，通过指定一个chunksize分块大小来读取文件，返回的是一个可迭代的对象TextFileReader。</p>
+<h4 id="3）数据块类型"><a href="#3）数据块类型" class="headerlink" title="3）数据块类型"></a>3）数据块类型</h4><p>数据块（chunker）类型使用<code>print(type(chunker))</code> 查看</p>
+<p>使用for循环打印代码</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">chunker = pd.read_csv(<span class="string">&#x27;train.csv&#x27;</span>, chunksize=<span class="number">1000</span>) </span><br><span class="line"><span class="keyword">for</span> chunk <span class="keyword">in</span> chunker: </span><br><span class="line">	<span class="built_in">print</span>(chunk) </span><br></pre></td></tr></table></figure>
+
+<p>最后得知类型为<strong>可迭代对象</strong><code>&lt;class &#39;pandas.io.parsers.TextFileReader&#39;&gt;</code></p>
+<h4 id="4）文件名中英文替换"><a href="#4）文件名中英文替换" class="headerlink" title="4）文件名中英文替换"></a>4）文件名中英文替换</h4><p>将文件头从英文转化成中文，使用**names&#x3D;[]**进行替换</p>
+<p><img src="/1673927892896.png" alt="1673927892896"></p>
+<ol>
+<li><p>方法一</p>
+<p><strong>主要区别在于是否设置header参数</strong></p>
+<ul>
+<li><p>header&#x3D;0的情况</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">&#x27;train.csv&#x27;</span>, names = [<span class="string">&#x27;乘客ID&#x27;</span>, <span class="string">&#x27;是否幸存&#x27;</span>, <span class="string">&#x27;仓位等级&#x27;</span>,<span class="string">&#x27;姓名&#x27;</span>,<span class="string">&#x27;性别&#x27;</span>,<span class="string">&#x27;年龄&#x27;</span>,<span class="string">&#x27;兄弟姐妹个数&#x27;</span>,<span class="string">&#x27;父母子女个数&#x27;</span>,<span class="string">&#x27;船票信息&#x27;</span>,<span class="string">&#x27;票价&#x27;</span>,<span class="string">&#x27;客舱&#x27;</span>,<span class="string">&#x27;登船港口&#x27;</span>],index_col=<span class="string">&#x27;乘客ID&#x27;</span>,header=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>没有header的情况</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">&#x27;train.csv&#x27;</span>, names = [<span class="string">&#x27;乘客ID&#x27;</span>, <span class="string">&#x27;是否幸存&#x27;</span>, <span class="string">&#x27;仓位等级&#x27;</span>,<span class="string">&#x27;姓名&#x27;</span>,<span class="string">&#x27;性别&#x27;</span>,<span class="string">&#x27;年龄&#x27;</span>,<span class="string">&#x27;兄弟姐妹个数&#x27;</span>,<span class="string">&#x27;父母子女个数&#x27;</span>,<span class="string">&#x27;船票信息&#x27;</span>,<span class="string">&#x27;票价&#x27;</span>,<span class="string">&#x27;客舱&#x27;</span>,<span class="string">&#x27;登船港口&#x27;</span>],index_col=<span class="string">&#x27;乘客ID&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>header&#x3D;None的情况</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">&#x27;train.csv&#x27;</span>, names = [<span class="string">&#x27;乘客ID&#x27;</span>, <span class="string">&#x27;是否幸存&#x27;</span>, <span class="string">&#x27;仓位等级&#x27;</span>,<span class="string">&#x27;姓名&#x27;</span>,<span class="string">&#x27;性别&#x27;</span>,<span class="string">&#x27;年龄&#x27;</span>,<span class="string">&#x27;兄弟姐妹个数&#x27;</span>,<span class="string">&#x27;父母子女个数&#x27;</span>,<span class="string">&#x27;船票信息&#x27;</span>,<span class="string">&#x27;票价&#x27;</span>,<span class="string">&#x27;客舱&#x27;</span>,<span class="string">&#x27;登船港口&#x27;</span>],index_col=<span class="string">&#x27;乘客ID&#x27;</span>,header=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>方法二</p>
+<p>直接使用<code>df.columns=[]</code>修改列名。</p>
+</li>
+<li><p>方法三</p>
+<p>使用方法通过字典对columns的键值对来设置修改：<code>df.rename(columns=&#123;&#39;PassengerId&#39;:&#39;乘客ID&#39;,&#39;Age&#39;:&#39;年龄&#39;&#125;,inplace=True)</code>，inplace参数代码是否在原表上修改。</p>
+</li>
+</ol>
+<h3 id="3-初步观察"><a href="#3-初步观察" class="headerlink" title="3.初步观察"></a>3.初步观察</h3><p>查看数据基本信息：<strong>df.info()</strong></p>
+<p><img src="/1673931546205.png" alt="1673931546205"></p>
+<p>观察表格前10行的数据：<strong>df.head(10)</strong></p>
+<p><img src="/1673931568280.png" alt="1673931568280"></p>
+<p>观察表格后15行的数据：<strong>df.head(15)</strong></p>
+<p><img src="/1673931599534.png" alt="1673931599534"></p>
+<p>判断数据是否为空，空的地方返回True，其余地方返回False：<strong>df.isnull( ).head( )</strong></p>
+<p><img src="/1673931618503.png" alt="1673931618503"></p>
+<p>【思考】通过<strong>指标分析法</strong>，观察数据的平均数、众数、中位数、最大值、最小值、比率、绝对数、计数。</p>
+<h3 id="4-保存数据"><a href="#4-保存数据" class="headerlink" title="4.保存数据"></a>4.保存数据</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df.to_csv(<span class="string">&#x27;train_chinese.csv&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果出现乱码，就加入<code>encoding=&#39;GBK&#39; 或者 ’encoding = ’utf-8‘‘</code>修改字符集为GBK或者utf-8，解决乱码问题。</p>
+<h2 id="第二节"><a href="#第二节" class="headerlink" title="第二节"></a>第二节</h2><h4 id="1-Series和DataFrame"><a href="#1-Series和DataFrame" class="headerlink" title="1.Series和DataFrame"></a>1.Series和DataFrame</h4><p>pandas只有两种数据类型，<strong>Series和DataFrame</strong> </p>
+<p>Series你可以简单的理解为Excel中的行或者列，DataFrame可以理解为整个Excel表格。</p>
+<ul>
+<li>Series：一维数组，与Numpy种的一维array类似。二者与Python基本的数据结构List也很相近。字符串、布尔值、数字等都能保存在这里。</li>
+<li>Time-Series：以时间为索引的Series</li>
+<li>DataFrame：二维的表格型数据结构。可以将DataFrame理解为Series的容器。</li>
+<li>Panel：三维的数组，可以理解为DataFrame的容器。</li>
+</ul>
+<p>查看DataFrame数据的每列名称：<strong>df.columns</strong></p>
+<p><img src="/1673932775940.png" alt="1673932775940"></p>
+<p>查看“Cabin”这列的所有值：<strong>df[‘Cablin’].head(3)</strong> or <strong>df.Cabin.head(3)</strong></p>
+<p>这里参考给的是英文版的文件，如果使用中文的文件需要修改一下引号里面的值，不然会报KeyError。</p>
+<p>修改为&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;》<strong>df[‘客舱’].head(3)</strong> or <strong>df.客舱.head(3)</strong><img src="/1673933026770.png" alt="1673933026770"></p>
+<h4 id="2-删除多余的列"><a href="#2-删除多余的列" class="headerlink" title="2.删除多余的列"></a>2.删除多余的列</h4><ol>
+<li>&#96;&#96;&#96;python<br>del test_1[‘a’]<br>test_1.head(3)<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">2. 找到需要删除的列明，并对应索引，使用list获取列名，使用索引获取需要删除的列。如：**list(data)[2:5]**，然后嵌套入drop函数，删除对应的列：**datanor=data.drop(list(data)[2:5],axis=1)** axis=1表示对列进行操作 </span><br><span class="line"></span><br><span class="line">将[&#x27;PassengerId&#x27;,&#x27;Name&#x27;,&#x27;Age&#x27;,&#x27;Ticket&#x27;]这几个列元素隐藏：**df.drop([&#x27;PassengerId&#x27;,&#x27;Name&#x27;,&#x27;Age&#x27;,&#x27;Ticket&#x27;],axis=1).head(3)**</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">显示年龄在10岁以下的乘客信息：</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">df[df[&quot;年龄&quot;]&lt;10].head(3)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><img src="/1673934406204.png" alt="1673934406204"></p>
+<p>将年龄在10岁以上和50岁以下的乘客信息：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">midage = df[(df[<span class="string">&quot;年龄&quot;</span>]&gt;<span class="number">10</span>)&amp; (df[<span class="string">&quot;年龄&quot;</span>]&lt;<span class="number">50</span>)]</span><br></pre></td></tr></table></figure>
+
+<p><img src="/1673934520641.png" alt="1673934520641"></p>
+<p>将midage的数据中第100行的“Pclass”和“Sex”显示出来：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">midage = midage.reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/1673934668961.png" alt="1673934668961"></p>
+<h4 id="3-了解resert-index"><a href="#3-了解resert-index" class="headerlink" title="3.了解resert_index()"></a>3.了解resert_index()</h4><p>【思考】resert_index()函数：</p>
+<pre><code>Series.reset_index(level=None, drop=False, name=NoDefault.no_default, inplace=False)
+</code></pre>
+<ul>
+<li><p>drop: 重新设置索引后是否将原索引作为新的一列并入DataFrame，默认为False</p>
+</li>
+<li><p>inplace: 是否在原DataFrame上改动，默认为False</p>
+</li>
+<li><p>level: 如果索引(index)有多个列，仅从索引中删除level指定的列，默认删除所有列</p>
+</li>
+<li><p>col_level: 如果列名(columns)有多个级别，决定被删除的索引将插入哪个级别，默认插入第一级</p>
+</li>
+<li><p>col_fill: 如果列名(columns)有多个级别，决定其他级别如何命名</p>
+</li>
+</ul>
+<p>作用： 用索引重置生成一个新的DataFrame或Series。当索引需要被视为列，或者索引没有意义，需要在另一个操作之前重置为默认值时。在机器学习中常常会对索引进行一定的处理，用于是否保留原有的索引。</p>
+<h4 id="4-loc方法和iloc方法"><a href="#4-loc方法和iloc方法" class="headerlink" title="4.loc方法和iloc方法"></a>4.loc方法和iloc方法</h4><p>使用loc方法将midage的数据中第100，105，108行的“Pclass”，“Name”和“Sex”的数据显示出来：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">midage.loc[[<span class="number">100</span>,<span class="number">105</span>,<span class="number">108</span>],[<span class="string">&#x27;Pclass&#x27;</span>,<span class="string">&#x27;Name&#x27;</span>,<span class="string">&#x27;Sex&#x27;</span>]]</span><br></pre></td></tr></table></figure>
+
+<p>使用iloc方法将midage的数据中第100，105，108行的“Pclass”，“Name”和“Sex”的数据显示出来：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">midage.iloc[[<span class="number">100</span>,<span class="number">105</span>,<span class="number">108</span>],[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]]</span><br></pre></td></tr></table></figure>
+
+
+
+<p>【思考】loc是指location，iloc中的i是指integer。</p>
+<p>区别：</p>
+<p>1.<code>loc</code>和<code>iloc</code>在切片时，范围的区间有些许差别。</p>
+<p><code>iloc</code>中范围是前闭后开区间<br> <code>loc</code>中范围是前闭后闭区间</p>
+<p>2.loc使用范围比iloc更广更实用，loc可以使用切片、名称(index,columns)、也可以切片和名称混合使用；但是loc不能使用不存在的索引来充当切片取值,像-1 </p>
+<p>3.iloc只能用整数来取数 </p>
+<h3 id="第三节"><a href="#第三节" class="headerlink" title="第三节"></a>第三节</h3><h4 id="1-利用Pandas对是咧数据进行排序。"><a href="#1-利用Pandas对是咧数据进行排序。" class="headerlink" title="1.利用Pandas对是咧数据进行排序。"></a>1.利用Pandas对是咧数据进行排序。</h4><p>自己构建一个数组，然后进行排序，要求升序</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">frame = pd.DataFrame(np.arange(<span class="number">8</span>).reshape((<span class="number">2</span>, <span class="number">4</span>)), </span><br><span class="line">                     index=[<span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;1&#x27;</span>], </span><br><span class="line">                     columns=[<span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>])</span><br><span class="line">frame</span><br></pre></td></tr></table></figure>
+
+<p><img src="/1673936728604.png" alt="1673936728604"></p>
+<p>pd.DataFrame() ：创建一个DataFrame对象</p>
+<p>np.arange(8).reshape((2, 4)) : 生成一个二维数组（2*4）,第一列：0，1，2，3 第二列：4，5，6，7</p>
+<p>index&#x3D;[‘2, 1] ：DataFrame 对象的索引列</p>
+<p>columns&#x3D;[‘d’, ‘a’, ‘b’, ‘c’] ：DataFrame 对象的索引行</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 大多数时候我们都是想根据列的值来排序,所以，将你构建的DataFrame中的数据根据某一列，升序排列</span></span><br><span class="line">frame.sort_values(by=<span class="string">&#x27;c&#x27;</span>, ascending=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/1673939470081.png" alt="1673939470081"></p>
+<p>by参数指向要排列的列，ascending参数指向排序的方式（升序还是降序） </p>
+<h5 id="让行索引升序排序："><a href="#让行索引升序排序：" class="headerlink" title="让行索引升序排序："></a>让行索引升序排序：</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">frame.sort_index()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/1673939806124.png" alt="1673939806124"></p>
+<h5 id="让列索引升序排序："><a href="#让列索引升序排序：" class="headerlink" title="让列索引升序排序："></a>让列索引升序排序：</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">frame.sort_index(axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/1673939843678.png" alt="1673939843678"></p>
+<h5 id="让列索引降序排序："><a href="#让列索引降序排序：" class="headerlink" title="让列索引降序排序："></a>让列索引降序排序：</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">frame.sort_index(axis=<span class="number">1</span>, ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/1673939981715.png" alt="1673939981715"></p>
+<h5 id="让任选两列数据同时降序排序："><a href="#让任选两列数据同时降序排序：" class="headerlink" title="让任选两列数据同时降序排序："></a>让任选两列数据同时降序排序：</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">frame.sort_values(by=[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>], ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/1673940124209.png" alt="1673940124209"></p>
+<h5 id="对泰坦尼克号数据按票价和年龄两列进行综合排序（降序排列）"><a href="#对泰坦尼克号数据按票价和年龄两列进行综合排序（降序排列）" class="headerlink" title="对泰坦尼克号数据按票价和年龄两列进行综合排序（降序排列）"></a>对泰坦尼克号数据按票价和年龄两列进行综合排序（降序排列）</h5><p><strong>text.sort_values(by&#x3D;[‘票价’，’年龄’],ascending&#x3D;False).head(3)</strong></p>
+<h4 id="2-利用Pandas进行算术计算，计算两个DataFrame数据相加结果。"><a href="#2-利用Pandas进行算术计算，计算两个DataFrame数据相加结果。" class="headerlink" title="2.利用Pandas进行算术计算，计算两个DataFrame数据相加结果。"></a>2.利用Pandas进行算术计算，计算两个DataFrame数据相加结果。</h4><p>首先也是自己先构建表格。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">frame1_a = pd.DataFrame(np.arange(<span class="number">9.</span>).reshape(<span class="number">3</span>, <span class="number">3</span>),</span><br><span class="line">                     columns=[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>],</span><br><span class="line">                     index=[<span class="string">&#x27;one&#x27;</span>, <span class="string">&#x27;two&#x27;</span>, <span class="string">&#x27;three&#x27;</span>])</span><br><span class="line">frame1_b = pd.DataFrame(np.arange(<span class="number">12.</span>).reshape(<span class="number">4</span>, <span class="number">3</span>),</span><br><span class="line">                     columns=[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;c&#x27;</span>],</span><br><span class="line">                     index=[<span class="string">&#x27;first&#x27;</span>, <span class="string">&#x27;one&#x27;</span>, <span class="string">&#x27;two&#x27;</span>, <span class="string">&#x27;second&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+<p><img src="/1673940503386.png" alt="1673940503386"></p>
+<p>1.展示a表：frame1_a</p>
+<p>2.展示b表：frame1_b</p>
+<p>3.将frame_a和frame_b进行相加：<strong>frame1_a  + frame1_b</strong></p>
+<p>再两个DataFrame相加后，会返回一个新的DataFrame，对应的行和列的值会相加，没有对应的会变成空值NaN。</p>
+<p>【问题】通过泰坦尼克号数据如何计算出再船上最大的家族有多少人？</p>
+<p>方法一：max(text[‘兄弟姐妹个数’] + text[‘父母子女个数’])</p>
+<h4 id="3-使用describe-函数查看数据基本统计信息"><a href="#3-使用describe-函数查看数据基本统计信息" class="headerlink" title="3.使用describe()函数查看数据基本统计信息"></a>3.使用describe()函数查看数据基本统计信息</h4><p>首先仍然是先建立一个例子，然后对例子进行操作</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">frame2 = pd.DataFrame([[<span class="number">1.4</span>, np.nan], </span><br><span class="line">                       [<span class="number">7.1</span>, -<span class="number">4.5</span>],</span><br><span class="line">                       [np.nan, np.nan], </span><br><span class="line">                       [<span class="number">0.75</span>, -<span class="number">1.3</span>]</span><br><span class="line">                      ], index=[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>], columns=[<span class="string">&#x27;one&#x27;</span>, <span class="string">&#x27;two&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+<p>调用函数的代码：<strong>frame2.describe( )</strong></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">count : 样本数据大小</span><br><span class="line">mean : 样本数据的平均值</span><br><span class="line">std : 样本数据的标准差</span><br><span class="line">min : 样本数据的最小值</span><br><span class="line">25% : 样本数据25%的时候的值</span><br><span class="line">50% : 样本数据50%的时候的值</span><br><span class="line">75% : 样本数据75%的时候的值</span><br><span class="line">max : 样本数据的最大值</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://cimaog.top">Cimaog</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://cimaog.top/2023/01/16/Task01/">https://cimaog.top/2023/01/16/Task01/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://cimaog.top" target="_blank">CimaogのBighouse</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a></div><div class="post_share"><div class="social-share" data-image="https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/01/05/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/"><img class="next-cover" src="https://w.wallhaven.cc/full/7p/wallhaven-7p6eyo.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">特征工程</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202004%2F22%2F20200422144832_tifry.jpg&amp;refer=http%3A%2F%2Fc-ssl.duitang.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1661137344&amp;t=a1da2f337fbd4983ffa24791e75e0e71" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Cimaog</div><div class="author-info__description">个人技术博客 | 日常生活分享</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/LavenderEstela" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:295376682luna@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Task01"><span class="toc-text">Task01</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82"><span class="toc-text">第一节</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AF%BC%E5%8C%85"><span class="toc-text">1.导包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%BD%BD%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-text">2.载入数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%EF%BC%89%E6%95%B0%E6%8D%AE%E7%9A%84%E8%BD%BD%E5%85%A5%E6%96%B9%E5%BC%8F"><span class="toc-text">1）数据的载入方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%EF%BC%89%E9%80%90%E5%9D%97%E8%AF%BB%E5%8F%96"><span class="toc-text">2）逐块读取</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%EF%BC%89%E6%95%B0%E6%8D%AE%E5%9D%97%E7%B1%BB%E5%9E%8B"><span class="toc-text">3）数据块类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%EF%BC%89%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%AD%E8%8B%B1%E6%96%87%E6%9B%BF%E6%8D%A2"><span class="toc-text">4）文件名中英文替换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%88%9D%E6%AD%A5%E8%A7%82%E5%AF%9F"><span class="toc-text">3.初步观察</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE"><span class="toc-text">4.保存数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82"><span class="toc-text">第二节</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Series%E5%92%8CDataFrame"><span class="toc-text">1.Series和DataFrame</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%88%A0%E9%99%A4%E5%A4%9A%E4%BD%99%E7%9A%84%E5%88%97"><span class="toc-text">2.删除多余的列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%BA%86%E8%A7%A3resert-index"><span class="toc-text">3.了解resert_index()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-loc%E6%96%B9%E6%B3%95%E5%92%8Ciloc%E6%96%B9%E6%B3%95"><span class="toc-text">4.loc方法和iloc方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82"><span class="toc-text">第三节</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%88%A9%E7%94%A8Pandas%E5%AF%B9%E6%98%AF%E5%92%A7%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E6%8E%92%E5%BA%8F%E3%80%82"><span class="toc-text">1.利用Pandas对是咧数据进行排序。</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%A9%E8%A1%8C%E7%B4%A2%E5%BC%95%E5%8D%87%E5%BA%8F%E6%8E%92%E5%BA%8F%EF%BC%9A"><span class="toc-text">让行索引升序排序：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%A9%E5%88%97%E7%B4%A2%E5%BC%95%E5%8D%87%E5%BA%8F%E6%8E%92%E5%BA%8F%EF%BC%9A"><span class="toc-text">让列索引升序排序：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%A9%E5%88%97%E7%B4%A2%E5%BC%95%E9%99%8D%E5%BA%8F%E6%8E%92%E5%BA%8F%EF%BC%9A"><span class="toc-text">让列索引降序排序：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%A9%E4%BB%BB%E9%80%89%E4%B8%A4%E5%88%97%E6%95%B0%E6%8D%AE%E5%90%8C%E6%97%B6%E9%99%8D%E5%BA%8F%E6%8E%92%E5%BA%8F%EF%BC%9A"><span class="toc-text">让任选两列数据同时降序排序：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%B9%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E5%8F%B7%E6%95%B0%E6%8D%AE%E6%8C%89%E7%A5%A8%E4%BB%B7%E5%92%8C%E5%B9%B4%E9%BE%84%E4%B8%A4%E5%88%97%E8%BF%9B%E8%A1%8C%E7%BB%BC%E5%90%88%E6%8E%92%E5%BA%8F%EF%BC%88%E9%99%8D%E5%BA%8F%E6%8E%92%E5%88%97%EF%BC%89"><span class="toc-text">对泰坦尼克号数据按票价和年龄两列进行综合排序（降序排列）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%88%A9%E7%94%A8Pandas%E8%BF%9B%E8%A1%8C%E7%AE%97%E6%9C%AF%E8%AE%A1%E7%AE%97%EF%BC%8C%E8%AE%A1%E7%AE%97%E4%B8%A4%E4%B8%AADataFrame%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%8A%A0%E7%BB%93%E6%9E%9C%E3%80%82"><span class="toc-text">2.利用Pandas进行算术计算，计算两个DataFrame数据相加结果。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%BD%BF%E7%94%A8describe-%E5%87%BD%E6%95%B0%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%9F%BA%E6%9C%AC%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF"><span class="toc-text">3.使用describe()函数查看数据基本统计信息</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/01/16/Task01/" title="Task01"><img src="https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Task01"/></a><div class="content"><a class="title" href="/2023/01/16/Task01/" title="Task01">Task01</a><time datetime="2023-01-16T07:09:44.000Z" title="发表于 2023-01-16 15:09:44">2023-01-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/05/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/" title="特征工程"><img src="https://w.wallhaven.cc/full/7p/wallhaven-7p6eyo.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="特征工程"/></a><div class="content"><a class="title" href="/2023/01/05/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/" title="特征工程">特征工程</a><time datetime="2023-01-05T12:45:32.000Z" title="发表于 2023-01-05 20:45:32">2023-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/20/Python/" title="Python"><img src="https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python"/></a><div class="content"><a class="title" href="/2022/11/20/Python/" title="Python">Python</a><time datetime="2022-11-20T04:00:57.000Z" title="发表于 2022-11-20 12:00:57">2022-11-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/25/CET-4/" title="CET-4"><img src="https://w.wallhaven.cc/full/7p/wallhaven-7p6eyo.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CET-4"/></a><div class="content"><a class="title" href="/2022/10/25/CET-4/" title="CET-4">CET-4</a><time datetime="2022-10-25T12:45:32.000Z" title="发表于 2022-10-25 20:45:32">2022-10-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/07/CS61A/" title="UCB CS61A"><img src="https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UCB CS61A"/></a><div class="content"><a class="title" href="/2022/10/07/CS61A/" title="UCB CS61A">UCB CS61A</a><time datetime="2022-10-07T12:43:58.000Z" title="发表于 2022-10-07 20:43:58">2022-10-07</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By Cimaog</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a><span class="footer-separator">|</span><span>备案 </span><a target="_blank" rel="noopener" href="http://www.beian.miit.gov.cn/">豫ICP备2022017550号</a></div><div class="footer_custom_text">相逢即是缘，来了就留下叭~😄</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="704776923" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true"> </div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/nipsilon.model.json"},"display":{"position":"right","width":280,"height":400},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

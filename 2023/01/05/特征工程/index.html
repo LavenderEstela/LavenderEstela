@@ -1,0 +1,387 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>特征工程 | CimaogのBighouse</title><meta name="keywords" content="机器学习"><meta name="author" content="Cimaog,295376682@qq.com"><meta name="copyright" content="Cimaog"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="特征工程特征工程是一个过程：将数据转换为能更好地表示潜在问题的特征，从而提高机器学习性能。 特征工程具体包含：  转换数据的过程 特征工程适用于任何阶段的数据，应用于已经处理过的数据。处理的数据经常是表格形式的，数据会被组织成行（观察值）和列（属性）。  特征 特征是对机器学习过程有意义的数据属性。  更好地表示潜在问题 转换数据的目的在是要更好地表达更大的问题  提高机器学习性能 执行特征工程不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="特征工程">
+<meta property="og:url" content="https://cimaog.top/2023/01/05/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/index.html">
+<meta property="og:site_name" content="CimaogのBighouse">
+<meta property="og:description" content="特征工程特征工程是一个过程：将数据转换为能更好地表示潜在问题的特征，从而提高机器学习性能。 特征工程具体包含：  转换数据的过程 特征工程适用于任何阶段的数据，应用于已经处理过的数据。处理的数据经常是表格形式的，数据会被组织成行（观察值）和列（属性）。  特征 特征是对机器学习过程有意义的数据属性。  更好地表示潜在问题 转换数据的目的在是要更好地表达更大的问题  提高机器学习性能 执行特征工程不">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://w.wallhaven.cc/full/7p/wallhaven-7p6eyo.png">
+<meta property="article:published_time" content="2023-01-05T12:45:32.000Z">
+<meta property="article:modified_time" content="2023-01-16T03:13:33.586Z">
+<meta property="article:author" content="Cimaog">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://w.wallhaven.cc/full/7p/wallhaven-7p6eyo.png"><link rel="shortcut icon" href="/./img/favicon.png"><link rel="canonical" href="https://cimaog.top/2023/01/05/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '特征工程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2023-01-16 11:13:33'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/xxx.css"><meta name="generator" content="Hexo 6.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202004%2F22%2F20200422144832_tifry.jpg&amp;refer=http%3A%2F%2Fc-ssl.duitang.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1661137344&amp;t=a1da2f337fbd4983ffa24791e75e0e71" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://w.wallhaven.cc/full/7p/wallhaven-7p6eyo.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">CimaogのBighouse</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">特征工程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-05T12:45:32.000Z" title="发表于 2023-01-05 20:45:32">2023-01-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-16T03:13:33.586Z" title="更新于 2023-01-16 11:13:33">2023-01-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="特征工程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h1><p>特征工程是一个过程：将数据转换为能更好地表示潜在问题的特征，从而提高机器学习性能。</p>
+<p>特征工程具体包含：</p>
+<ul>
+<li><p>转换数据的过程</p>
+<p>特征工程适用于任何阶段的数据，应用于已经<strong>处理过</strong>的数据。处理的数据经常是表格形式的，数据会被组织成行（观察值）和列（属性）。</p>
+</li>
+<li><p>特征</p>
+<p>特征是对机器学习过程有意义的数据属性。</p>
+</li>
+<li><p>更好地表示潜在问题</p>
+<p>转换数据的目的在是要更好地表达更大的问题</p>
+</li>
+<li><p>提高机器学习性能</p>
+<p>执行特征工程不仅是要获取更干净的数组，而且最终要在机器学习流水线中使用这些数据</p>
+</li>
+</ul>
+<p>大体上，机器学习分成两类：<strong>监督学习</strong>和<strong>无监督学习</strong>。</p>
+<p>1.监督学习</p>
+<p>监督学习（预测分析）算法专门处理预测一个值的任务，通常是用数据中的其他属性来预测余下的一个属性。</p>
+<p>在监督学习中，我们一般将数据集中希望预测的属性（一般只有一个，但是也不一定）叫做响应（response），其余的属性叫做特征（feature）</p>
+<p>2.无监督学习</p>
+<p>监督学习的目的是预测，而无监督学习就是对数据进行分类。此类分析和类型的创建属于无监督学习的一个特殊类别，称作<strong>聚类</strong>。</p>
+<p>特征和属性通常有明显的区分，属性一般是表格数据的列，特征则一般只指代对机器学习算法有益的属性。我们一般将所有的列都称为特征，直到证明某些列是无用或有害的。</p>
+<p>评估监督学习算法</p>
+<p>当进行预测建模时，性能直接与模型利用数据结构能力，以及使用数据结构进行恰当预测的能力有关。</p>
+<p>分为具体的类型：分类（预测定性响应）和回归（预测定量响应）</p>
+<p>回归问题：我们用线性回归的<strong>均方误差（MSE）</strong></p>
+<p>评估无监督学修方法算法</p>
+<p>聚类分析：我们会利用<strong>轮廓系数</strong>（一个表示聚类分离性的变量，在-1和1之间）</p>
+<ul>
+<li><p>监督学习：预测分析</p>
+<ul>
+<li><p>回归——预测<strong>定量</strong>数据</p>
+<p>主要使用均方差作为测量指标</p>
+</li>
+<li><p>分类——预测<strong>定性</strong>数据</p>
+<p>主要使用准确率作为测量指标</p>
+</li>
+</ul>
+</li>
+<li><p>无监督学习：聚类——将数据按特征行为进行分类</p>
+<ul>
+<li>主要用轮廓系数作为测量指标</li>
+</ul>
+</li>
+<li><p>统计检验：用相关系数、t检验、卡方检验，以及其他方法评估并量化袁术数据和转换后数据的效果</p>
+</li>
+</ul>
+<p>特征增强：清洗数据</p>
+<ul>
+<li>对非结构化数据进行结构化</li>
+<li>数据填充——在原先没有数据的位置填充（缺失）数据</li>
+<li>数据归一化：<ul>
+<li>标准化（也称为z分数标准化）</li>
+<li>极差法（也称为min-max标准化）</li>
+<li>L1和L2正则化（将数据投影到不同的空间）</li>
+</ul>
+</li>
+</ul>
+<p>简单方式（把有缺失值的特征删掉）&#x3D;&#x3D;&#x3D;&#x3D;》复杂方式（在其他特征上进行机器学习，填充缺失值）</p>
+<p>归一化使用一般比较简单的数学工具改变数据的缩放比例</p>
+<p>提问：属性在何种程度上才能成为真正的特征。</p>
+<p>说人话就是：哪些列对我们的机器学习流水线没有帮助且有害，应该嘎掉？</p>
+<ul>
+<li>相关系数</li>
+<li>识别并移除多重共线性</li>
+<li>卡方检验</li>
+<li>方差分析</li>
+<li>理解p值</li>
+<li>迭代特征选择</li>
+<li>用机器学习测量熵和信息增益</li>
+</ul>
+<p>上述过程中都会建议删掉某些特征，但是需要给出不同的理由</p>
+<p>实体匹配：通过手上目前已知的数据从数据集里找出这些具体属性。</p>
+<p>主成分分析（PCA）</p>
+<p>第二章</p>
+<p>拿到一个新的数据集，首要任务是确认数据是结构化还是非结构化的。</p>
+<p>问题来了，什么是结构化的数据？</p>
+<p><strong>结构化的数据</strong>就是有组织的，可以分成观察值和特征的数据，一般以<strong>表格</strong>的形式组织。（行是观察值，列是特征。）</p>
+<p><strong>非结构化的数据</strong>就是<strong>一团</strong>数据，或者只有一个特征（列）</p>
+<p>定量数据本质上是数值，应该是衡量某样东西的数量。</p>
+<p>定性数据本质上是类别，应该是描述某样东西的性质。</p>
+<p>事实上，在大多数数据集中，我们会同时处理<strong>定量数据</strong>和<strong>定性数据</strong>。</p>
+<p>由于定量数据和定性数据之间的模糊性，我们会使用一个更深层次的方法进行处理，称为数据的4个等级。</p>
+<p>Pandas包中有很多方法可以识别和处理缺失值，最快的<strong>salary_ranges.isnull( ).sum( )</strong></p>
+<p>还有一个方法时<strong>climate.dropna(axios&#x3D;0,inplace&#x3D;True)</strong></p>
+<p>**salary_ranges.describe( )**方法默认描述定量列，但是如果没有定量列，也会描述定性列</p>
+<p>当处理定量数据时，一般使用整数或浮点数作为类型（最好使用浮点数）；定性数据则一般适用<strong>字符串</strong>或者<strong>Unicode</strong>对象。</p>
+<p>用Pandas中的map功能，将函数映射到整个数据集</p>
+<ul>
+<li><p>定类等级</p>
+<p>数据第一个等级，结构最弱。整个等级的数据只按名称分类。</p>
+<p>不能执行任何定量数学操作，例如加法或除法。这些数学操作没有意义。</p>
+<p><strong>salary_ranges[‘Grade’].value_counts( ).head( )</strong></p>
+</li>
+<li><p>定序等级</p>
+<p>定序等级继承了定类等级的所有属性，而且有重要的附加属性</p>
+<ul>
+<li>定序等级的数据可以自然排序</li>
+<li>列中的某些数据比其他数据更好</li>
+</ul>
+<p>在定序等级，我们可以像定类等级那样进行计数，也可以引入比较和排序。</p>
+</li>
+<li><p>定距等级</p>
+<p>这个等级中我们开始研究定量数据。数值数据不仅可以像定序里一样排序，而且值之间的差异也有意义。在定距等级，我们不仅可以对值进行<strong>排序和比较</strong>，还可以<strong>加减</strong>。</p>
+<p>在该等级上可以进行加减，可以引入<strong>算术平均数</strong>和<strong>标准差</strong>。</p>
+<p>用groupby清除大部分的噪声。</p>
+<p>climate_sub_us.groupby(‘year’).mean( )[‘AverageTemperature’].plot( )</p>
+<p>用滑动均值平滑图像</p>
+<p>climate_sub_us.groupby(‘year’).mean( )[‘AverageTemperature’].rolling(10).mean( ).plot( )</p>
+</li>
+<li><p>定比等级</p>
+<p>最高等级，在继承定距等级的加减运算，多了一个<strong>绝对零点</strong>的概念，可以坐乘除运算。</p>
+</li>
+</ul>
+<p>第三章</p>
+<p>清洗和增强数据：前者是指调整已有的列和行，后者则是指在数据集中删除和添加新的列。</p>
+<p>数据增强的第一种方法是识别数据的缺失值。</p>
+<p>空准确率：指当模型总是预测频率较高的类别时达到的正确率。</p>
+<p>缺失值的常见<strong>填充方法</strong>有：</p>
+<ul>
+<li>0（数值型）</li>
+<li>unknown或者Unknown（类别型）</li>
+<li>？（类别型）</li>
+</ul>
+<p>缺失值会引发很多问题，但是大部分学习算法都不能处理缺失值。</p>
+<p>缺失值的常见<strong>填充方法</strong>有：</p>
+<ul>
+<li>删除缺少值的行</li>
+<li>填充缺失值</li>
+</ul>
+<p>K最近邻（KNN分类模型），网格搜索模块。这个模块会自动找到最合适我们模型的、交叉验证准确率最好的KNN参数组合（暴力搜索）。</p>
+<p>P59</p>
+<p>如果用0填充，准确率会低于直接删掉有缺失值的行。</p>
+<p>如果训练集和测试集都是用整个x矩阵的均值填充的，违反了机器学习流程的核心原则（？）</p>
+<p>当预测测试集的响应值时，不能假设我们已经知道了整个数据集的均值。</p>
+<p>正确的方法是我们先计算出训练集的均值，然后用它填充测试集的缺失值。（？）</p>
+<p>泛化能力：从训练集的特征中学习并将所学应用到未知隐藏数据上的能力。</p>
+<ol>
+<li>我们地Pinpeline分两步：<ul>
+<li>拥有strategy &#x3D; ‘mean’的Imputer</li>
+<li>KNN类型的分类器</li>
+</ul>
+</li>
+<li>要为网格搜索重新定义param字典，因为必须明确n——neighbors参数所属地步骤</li>
+</ol>
+<p>Pinpeline类会为我们处理大部分的流程：可以恰当地从多个训练集取值并用其填充测试集的缺失值，还可以正确测试KNN的泛化能力，最终输出性能最佳的模型。</p>
+<p>所有的数据尺度都不同，数据工程师可以选用某种<strong>归一化</strong>操作，在机器学习流水线上处理该问题。</p>
+<p>归一化的操作旨在将行和列对其并转化为一致的规则。</p>
+<ul>
+<li><p>z分数标准化</p>
+<p>z分数标准化是最常见的技术，利用了统计学里简单的z分数（标准分数）思想，z分数标准化的输出会被重新缩放，使均值为0、标准差为1。</p>
+<p>内置的z分数归一化：</p>
+<p><strong>from sklearn.preprocessing import StandardScaler</strong></p>
+</li>
+<li><p>min-max标准化</p>
+<p>min-max标准化与上面类似，因为它也是用一个公式替换列中的每个值。使用这个公式可以看到，每列所有的值都会位于0~1.这种缩放的副作用是标准差非常小，这有可能不利于某种模型，因为异常值的权重降低了。</p>
+</li>
+<li><p>行归一化</p>
+<p>行归一化不是计算每列的统计值（均值、最小值、最大值等），而是会保证每行有<strong>单位范数</strong>，意味着每行的向量长度相同。</p>
+<p><strong>from sklearn.preprocessing import Normalizer</strong></p>
+</li>
+</ul>
+<p>以上三点，是我们需要关注的3种数据归一化的方法。</p>
+<p>很多算法会受尺度的影响</p>
+<ul>
+<li>KNN——因为依赖欧几里得距离</li>
+<li>K均值聚类——和KNN的原因一样</li>
+<li>逻辑回归、支持向量机、神经网络——如果使用梯度下降来学习权重</li>
+<li>主成分分析——特征向量将偏向较大的列</li>
+</ul>
+<p><strong>特征增强的意义是，识别有问题的区域，并确定哪种修复方法最有效。</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://cimaog.top">Cimaog</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://cimaog.top/2023/01/05/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/">https://cimaog.top/2023/01/05/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://cimaog.top" target="_blank">CimaogのBighouse</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></div><div class="post_share"><div class="social-share" data-image="https://w.wallhaven.cc/full/7p/wallhaven-7p6eyo.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/01/16/Task01/"><img class="prev-cover" src="https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Task01</div></div></a></div><div class="next-post pull-right"><a href="/2022/11/20/Python/"><img class="next-cover" src="https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Python</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202004%2F22%2F20200422144832_tifry.jpg&amp;refer=http%3A%2F%2Fc-ssl.duitang.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1661137344&amp;t=a1da2f337fbd4983ffa24791e75e0e71" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Cimaog</div><div class="author-info__description">个人技术博客 | 日常生活分享</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/LavenderEstela" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:295376682luna@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B"><span class="toc-text">特征工程</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/01/16/Task01/" title="Task01"><img src="https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Task01"/></a><div class="content"><a class="title" href="/2023/01/16/Task01/" title="Task01">Task01</a><time datetime="2023-01-16T07:09:44.000Z" title="发表于 2023-01-16 15:09:44">2023-01-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/05/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/" title="特征工程"><img src="https://w.wallhaven.cc/full/7p/wallhaven-7p6eyo.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="特征工程"/></a><div class="content"><a class="title" href="/2023/01/05/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/" title="特征工程">特征工程</a><time datetime="2023-01-05T12:45:32.000Z" title="发表于 2023-01-05 20:45:32">2023-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/20/Python/" title="Python"><img src="https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python"/></a><div class="content"><a class="title" href="/2022/11/20/Python/" title="Python">Python</a><time datetime="2022-11-20T04:00:57.000Z" title="发表于 2022-11-20 12:00:57">2022-11-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/25/CET-4/" title="CET-4"><img src="https://w.wallhaven.cc/full/7p/wallhaven-7p6eyo.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CET-4"/></a><div class="content"><a class="title" href="/2022/10/25/CET-4/" title="CET-4">CET-4</a><time datetime="2022-10-25T12:45:32.000Z" title="发表于 2022-10-25 20:45:32">2022-10-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/07/CS61A/" title="UCB CS61A"><img src="https://w.wallhaven.cc/full/o5/wallhaven-o59rep.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UCB CS61A"/></a><div class="content"><a class="title" href="/2022/10/07/CS61A/" title="UCB CS61A">UCB CS61A</a><time datetime="2022-10-07T12:43:58.000Z" title="发表于 2022-10-07 20:43:58">2022-10-07</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://w.wallhaven.cc/full/7p/wallhaven-7p6eyo.png')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By Cimaog</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a><span class="footer-separator">|</span><span>备案 </span><a target="_blank" rel="noopener" href="http://www.beian.miit.gov.cn/">豫ICP备2022017550号</a></div><div class="footer_custom_text">相逢即是缘，来了就留下叭~😄</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="704776923" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true"> </div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/nipsilon.model.json"},"display":{"position":"right","width":280,"height":400},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
