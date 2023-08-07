@@ -1,0 +1,528 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Hadoop【连载中】 | CimaogのBighouse</title><meta name="keywords" content="大数据"><meta name="author" content="Cimaog,295376682@qq.com"><meta name="copyright" content="Cimaog"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Hadoop大数据的特点（5V） 数据体量大（Volume） 种类、来源多样化（Variety） 低价值密度（Value） 速度快（Velocity） 数据的质量（Veracity） 大数据业务分析的基本步骤： 1.明确分析目的和思路 2.数据收集 3.数据处理 4.数据分析 5.数据展现 Hadoop的优势（4高） 1）高可靠性：Hadoop底层维护多个数据副本，所以即使Hadoop某个计算元素">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop【连载中】">
+<meta property="og:url" content="https://cimaog.top/2023/07/15/Hadoop/index.html">
+<meta property="og:site_name" content="CimaogのBighouse">
+<meta property="og:description" content="Hadoop大数据的特点（5V） 数据体量大（Volume） 种类、来源多样化（Variety） 低价值密度（Value） 速度快（Velocity） 数据的质量（Veracity） 大数据业务分析的基本步骤： 1.明确分析目的和思路 2.数据收集 3.数据处理 4.数据分析 5.数据展现 Hadoop的优势（4高） 1）高可靠性：Hadoop底层维护多个数据副本，所以即使Hadoop某个计算元素">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://w.wallhaven.cc/full/yx/wallhaven-yx7p77.jpg">
+<meta property="article:published_time" content="2023-07-15T12:43:58.000Z">
+<meta property="article:modified_time" content="2023-08-06T08:28:42.213Z">
+<meta property="article:author" content="Cimaog">
+<meta property="article:tag" content="大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://w.wallhaven.cc/full/yx/wallhaven-yx7p77.jpg"><link rel="shortcut icon" href="/./img/favicon.png"><link rel="canonical" href="https://cimaog.top/2023/07/15/Hadoop/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hadoop【连载中】',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2023-08-06 16:28:42'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/xxx.css"><meta name="generator" content="Hexo 6.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202004%2F22%2F20200422144832_tifry.jpg&amp;refer=http%3A%2F%2Fc-ssl.duitang.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1661137344&amp;t=a1da2f337fbd4983ffa24791e75e0e71" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://w.wallhaven.cc/full/yx/wallhaven-yx7p77.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">CimaogのBighouse</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Hadoop【连载中】</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-15T12:43:58.000Z" title="发表于 2023-07-15 20:43:58">2023-07-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-06T08:28:42.213Z" title="更新于 2023-08-06 16:28:42">2023-08-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Hadoop【连载中】"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h1><p>大数据的特点（5V）</p>
+<p>数据体量大（Volume）</p>
+<p>种类、来源多样化（Variety）</p>
+<p>低价值密度（Value）</p>
+<p>速度快（Velocity）</p>
+<p>数据的质量（Veracity）</p>
+<p>大数据业务分析的基本步骤：</p>
+<p>1.明确分析目的和思路</p>
+<p>2.数据收集</p>
+<p>3.数据处理</p>
+<p>4.数据分析</p>
+<p>5.数据展现</p>
+<p>Hadoop的优势（4高）</p>
+<p>1）高可靠性：Hadoop底层维护多个数据副本，所以即使Hadoop某个计算元素或存储出现故障，也不会导致数据丢失。</p>
+<p>2）高扩展性：在集群间分配任务数据，可方便的扩展数以千计的节点。</p>
+<p>3）高效性：在MapReduce的思想下，Hadoop是并行工作的，以加快任务处理速度。</p>
+<p>4）高容错性：能够自动将失败的任务重新分配。</p>
+<p>数据分析方法论和数据分析的区别：</p>
+<p>数据分析方法论是从宏观角度指导如何进行数据分析，数据分析是从微观角度指导如何进行数据分析</p>
+<p>分布式和集群的区别：</p>
+<p>分布式是多台机器，每台机器上部署不同组件</p>
+<p>集群是多台机器，每台集群部署相同组件</p>
+<p>负载均衡：解决一个处理不下多个一起处理</p>
+<p>故障转移：解决单点故障，容忍错误发生，业务连续</p>
+<p>伸缩性：动态扩容、缩容</p>
+<p>Hadoop集群包括两个集群：HDFS集群、YARN集群</p>
+<p>两个集群逻辑上分离（互相之间没有依赖）、通常物理上在一起（某些角色进程往往部署在同一台物理服务器上），都是标准的主从架构集群</p>
+<p>HDFS集群（分布式存储）：主角色NameNode   从角色DataNode  主角色辅助角色SecondaryNameNode</p>
+<p>YARN集群（资源管理、调度）：角色ResourceManager  从角色NodeManager</p>
+<p>MapperReduce 并不存在集群，它是一个计算框架</p>
+<p>Hadoop1.x和Hadoop2.x区别</p>
+<p>在Hadoop1.x时代，Hadoop中的MapReduce同时处理业务逻辑运算和资源的调度，耦合性较大，在Hadoop2.x时代，增加了Yarn。Yarn只负责资源的调度，MapReduce只负责运算。</p>
+<h2 id="HDFS架构概述"><a href="#HDFS架构概述" class="headerlink" title="HDFS架构概述"></a>HDFS架构概述</h2><p>HDFS本质就是一个文件系统，有目录树结构和Linux类似、分文件、文件夹</p>
+<p>1）NameNode（nn）：存储文件的元数据，如文件名，文件目录结构，文件属性（生成时间、副本数、文件权限），以及每个文件的块列表和块所在的DataNode等。</p>
+<p>2）DataNode（dn）：在本地文件系统存储文件块数据，以及块数据的校验和。</p>
+<p>3）SecondaryName Node（2nn）：每隔一段时间对NameNode元数据备份。</p>
+<h3 id="认识硬盘、RAID："><a href="#认识硬盘、RAID：" class="headerlink" title="认识硬盘、RAID："></a>认识硬盘、RAID：</h3><p>硬盘是计算机的主要存储硬件，可以用来存储数据</p>
+<p>硬盘分类：机械硬盘、固态硬盘、混合硬盘</p>
+<p>RAID（磁盘阵列）：</p>
+<p>由很多块独立的磁盘，组合成一个容量巨大的自盘组。多磁盘管理技术</p>
+<h3 id="存储架构："><a href="#存储架构：" class="headerlink" title="存储架构："></a>存储架构：</h3><p>DAS存储架构（直连式存储）</p>
+<p>NAS存储架构（网络接入存储）</p>
+<p>SAN存储架构（存储区域网络存储）</p>
+<p>文件设备：是一种存储和组织数据的方法，使用文件和树形目录的抽象逻辑代替了硬盘等物理设备使用数据块的概念</p>
+<h3 id="文件名："><a href="#文件名：" class="headerlink" title="文件名："></a>文件名：</h3><p>DOS操作系统重文件名由文件主名和拓展名组成，之间以一个小圆点隔开</p>
+<p>文件名可用于定位存储位置、区分不同文件，计算机实行按名存取的操作方式</p>
+<p>某些符号因有其特殊含义，一般不允许出现在文件名中</p>
+<h3 id="元数据："><a href="#元数据：" class="headerlink" title="元数据："></a>元数据：</h3><p>元数据又称之为解释性数据，记录数据的数据</p>
+<p>文件系统元数据一般指文件大小、最后修改时间、底层存储位置、属性、所属用户、权限等信息</p>
+<p>Q1：如何解决海量数据存的下的问题</p>
+<p>传统做法：单机存储</p>
+<p>单机纵向：内存不够加内存</p>
+<p>多机横向：采用多台机器存储</p>
+<p>多台机器存储也就意味着迈入了分布式存储</p>
+<p>Q2：如何解决海量数据文件查询便捷问题</p>
+<p>借助元数据记录来解决这个问题，把文件和其存储的机器的位置信息记录下来</p>
+<p>YARN架构</p>
+<p>Q3：如何解决大文件传输效率慢的问题</p>
+<p>通常的做法是分块存储，把大文件拆分成若干小块（block简写blk），分别存储在不同机器上，并行操作提高效率</p>
+<p>Q4：如何解决硬件故障数据丢失问题？</p>
+<p>冗余存储是个不错的选择，采用副本机制，副本越多，数据越安全</p>
+<p>Q5：如何解决用户查询视角统一规整问题</p>
+<p>传统的文件系统拥有所谓的目录树结构，带有层次感的namespace（命名空间），因为可以把分布式文件系统的元数据记录这一块这抽象成统一的目录树结构</p>
+<p>HFDS</p>
+<p>Hadoop分布式文件系统，该系统解决大数据如何存储问题，分布式意味着是横跨在多台计算机上的存储系统、并且具有高度容错率，提供统一的访问接口。</p>
+<p>HDFS设计目标</p>
+<p>硬件故障是常态，HDFS可能有成百上千的服务器组成，每一个组件都有可能出现故障。因此<strong>故障检测</strong>和<strong>自动快速恢复</strong>是HDFS的核心架构目标</p>
+<p>HDFS上的应用主要是以<strong>流式读取数据</strong>，HDFS被设计成用于批处理，而不是用户交互式的。</p>
+<p>HDFS被调整为<strong>大文件</strong>，提供很高的聚合数据宽带。</p>
+<p>大部分HDFS应用对文件要求的是<strong>write-one-read-many</strong>访问模型，一个文件一旦创建、写入、关闭之后就不需要修改了。</p>
+<p>移动计算的代价比之移动数据的代价低。</p>
+<p>HDFS重要特性——主从架构</p>
+<p>Namenode是HDFS主节点，Datanode是HDFS从节点，两种角色各司其职，共同协调</p>
+<p>HDFS重要特性——分块存储机制</p>
+<p>HDFS中的文件在物理上是分块存储（block）的，块的大小可以通过配置参数来规定，参数位于hdfs-default.xml中：dfs.blocksize。默认大小是128M</p>
+<p>HDFS重要特性——副本机制</p>
+<p>文件的所有block都会有副本，每个文件的block大小和副本系数都是可配置的</p>
+<p>默认dfs.replication的值是3，也就是额外再复制两份，连同本身总共3份而不是复制三份</p>
+<p>HDFS重要特性——namespace</p>
+<p>HDFS支持传统的层次型文件组织结构。HDFS会给客户端提供一个统一的抽象目录树</p>
+<p>HDFS重要特性——元数据管理</p>
+<p>Namenode管理的元数据具有两种类型：</p>
+<p>1.文件自身属性信息</p>
+<p>2.文件块位置映射信息</p>
+<p>HDFS重要特性——数据块存储</p>
+<p>文件的各个block的具体存储管理由DataNode节点承担。</p>
+<p>hadoop dfs 、hdfs dfs 、hadoop fs三者区别：</p>
+<p>hadoop dfs只能操作HDFS文件系统（包括与Local FS之间的操作），不过已经不适用了</p>
+<p>hdfs dfs 只能操作HDFS文件系统相关（包括与Local FS间的操作），常用</p>
+<p>hadoop fs 可操作任意文件系统，不仅仅是hdfs文件系统，使用范围更广（官方使用版）</p>
+<h4 id="常见命令——创建、查看、上传、下载"><a href="#常见命令——创建、查看、上传、下载" class="headerlink" title="常见命令——创建、查看、上传、下载"></a>常见命令——创建、查看、上传、下载</h4><p><strong>创建目录</strong><code>hadoop fs -mkdir [-p] &lt;path&gt;</code></p>
+<p><strong>查看指定目录下内容</strong> <code>hadoop fs -ls [-R] [&lt;path&gt;...]</code></p>
+<p><strong>上传文件到指定目录下（1）</strong> <code>hadoop fs [-f] [-p] &lt;localsrc&gt; ... &lt;dst&gt;</code></p>
+<p>path 指定目录路径            -h人性化显示文件size      -R递归查看指定目录及其子目录</p>
+<p><strong>上传文件到指定目录下（2）</strong> <code>hadoop fs -moveFromLocal &lt;localsrc&gt; ... &lt;dst&gt;</code> </p>
+<p>和 -put 功能一样，只不过上传结束，源数据会被删除</p>
+<p><strong>查看HDFS文件内容（1）</strong><code>hadoop fs -cat &lt;src&gt; ...</code></p>
+<p>不建议使用它来读取大文件内容</p>
+<p><strong>查看HDFS文件内容（2）</strong><code>hadoop fs -tail [-f] &lt;file&gt;</code></p>
+<p>查看文件最后1KB的内容，-f选择可以动态显示文件中追加的内容</p>
+<p><strong>查看HDFS文件内容（3）</strong><code>hadoop -hand &lt;file&gt;</code></p>
+<p>查看文件最后前1KB的内容</p>
+<p><strong>下载HDFS文件（1）</strong><code>hadoop fs -get [-f] [-p] &lt;src&gt;...&lt;localdst&gt;</code></p>
+<p>下载文件到本地文件系统指定目录，Localdst必须是目录</p>
+<p>-f 覆盖模板文件（在已存在的情况喜爱） -p保留访问和修改时间，所有权和权限</p>
+<p><strong>下载HDFS文件（2）</strong><code>hadoop fs -getmerge [-nl] [-skip-empty-file] &lt;src&gt; &lt;localdst&gt;</code></p>
+<p>下载多个文件合并到本地文件系统的一个文件中</p>
+<p>-nl选项表示在每个文件末尾添加换行符</p>
+<p><strong>追加数据到HDFS文件中</strong><code>hadoop fs -appendToFile &lt;localdst&gt;...&lt;dst&gt;</code></p>
+<p>将所有给定本地文件的内容追加到给定dst文件。dst如果文件不存在则创建该文件，若 <code>&lt;localSrc&gt;</code>为—，则输入为从标准输入中读取。</p>
+<p><strong>查看HDFS磁盘空间</strong><code>hadoop fs -df [-h] [&lt;path&gt;...]</code></p>
+<p>显示文件系统的容量，可用空间和已用空间</p>
+<p><strong>查看HDFS文件使用量</strong><code>hadoop fs -du [-s] [-h] [&lt;path&gt;...]</code></p>
+<p>-s：表示显示指定路径文件长度的汇总摘要，而不是单个文件的摘要</p>
+<p>-h：选项将以“人类可读”的方式格式化文件大小</p>
+<p><strong>HDFS数据移动操作</strong><code>hadoop fs -mv &lt;src&gt;...&lt;dst&gt;</code></p>
+<p>移动文件到指定文件夹下，可以使用该命令移动数据，重命名文件的名称</p>
+<p><strong>拷贝HDFS文件</strong> <code>hadoop fs -cp [-f] &lt;src&gt;...&lt;dst&gt;</code></p>
+<p>-f 覆盖目标文件（已存在下）</p>
+<p><strong>修改HDFS文件副本个数</strong> <code>hadoop fs -setrep [-R] [-w] &lt;rep&gt; &lt;path&gt;</code></p>
+<p>修改制定文件的副本个数 -R表示递归 修改文件夹下及其所有 -w客户端是否等待副本修改完毕</p>
+<p>HDFS Java 客户端API</p>
+<p>重要的客户端核心类就两个——Configuration和FileSystem </p>
+<p>Configuration：配置对象类，用于加载或设置参数属性</p>
+<p>FileSystem：文件系统对象基类。针对不同文件系统有不同具体实现。该类封装了文件系统相关的操作方法。</p>
+<p>执行报错：客户端没有权限——修改用户权限在@Before内个类里面</p>
+<p>下载文件执行报错：找不到winutils.exe、HADOOP_HOME没有配置——将winutils.exe和hadoop.exe文件放入HADOOP_HOME下然后重启ide</p>
+<p>Goole-option是Bazel Project 中的命令行参数解析器</p>
+<h3 id="案例：数据舆情上报"><a href="#案例：数据舆情上报" class="headerlink" title="案例：数据舆情上报"></a>案例：数据舆情上报</h3><p>第一步：生成任务列表</p>
+<p>第二步：舆情数据上传动作</p>
+<p>PS：在进行上传的时候，首先把任务列表标记为 copy  表示正在上传</p>
+<p>​	如果上传成功	  标记位done  表示上传结束</p>
+<p><img src="/1690361813641.png" alt="1690361813641"></p>
+<h2 id="HDFS数据存储与数据管理"><a href="#HDFS数据存储与数据管理" class="headerlink" title="HDFS数据存储与数据管理"></a>HDFS数据存储与数据管理</h2><p>常见客户端：Shell Command、JavaAPI、C API libhdfe</p>
+<p>WebHDFS</p>
+<p>提供了访问HDFS的RESTful接口，内置组件，默认开启。当客户端请求某文件时，WebHDFS会将其重定向到该资源所在的datanode。</p>
+<p>HttpFS</p>
+<p>提供ERSTful接口的网关服务器，该网关支持所有HDFS文件操作，对于文件CURD的操作全部提交给HttpFS服务进行中转，然后由HttpFS去跟HDFS集群交互。HttpFS是一个独立于HDFS的服务，若使用需要手动安装。</p>
+<p><img src="/1690440964183.png" alt="1690440964183"></p>
+<p>WebHDFS和HttpFS之间区别</p>
+<p><img src="/1690441059887.png" alt="1690441059887"></p>
+<p>WebHDFS：内置，默认开启，对外提供Restful，直接访问NameNode和DataNode，端口由dfs.namenode.http-address指定，默认值9870</p>
+<p>HttpFS：代理，对外提供Restful，通过代理服务，底层还是WebHDFS，客户端不跟hdfs直接交互，端口号14000</p>
+<p>HDFS文件存储格式</p>
+<p>查看相关文件可以使用可视化工具，能力非常强悍！还可以转换为CSV格式</p>
+<p><img src="/1690444644653.png" alt="1690444644653"></p>
+<p>行式存储：同一行数据存储在一起。适合插入，不适合查询。</p>
+<p>列式存储：同一列数据存储在一起。适合查询，不适合插入。</p>
+<h4 id="重点掌握两种格式——ORC和Parquet"><a href="#重点掌握两种格式——ORC和Parquet" class="headerlink" title="重点掌握两种格式——ORC和Parquet"></a>重点掌握两种格式——ORC和Parquet</h4><p>1）TextFile</p>
+<p>文本格式最常见，通常按行存储，以回车换行符区分不同行数据。最大缺点是，它不支持块级别压缩。优点是<strong>易读性</strong>比较好。</p>
+<p>2）SequenceFile </p>
+<p>序列化文件，每条数据记录都是<strong>key、value键值对</strong>进行<strong>序列化存储</strong>（二进制格式）。序列化文件与文本文件相比更紧凑，支持record级、block块级压缩。压缩的同时支持文件切分。通常把SequenceFile作为中间数据存储格式。例如，将大量小文件合并放入到一个SequenceFile中。</p>
+<p><strong>record</strong> 就是一个kv键值对，其中数据保存在value中。可以选择是否针对value进行压缩。</p>
+<p><strong>block</strong>就是多个record的结合。block级别压缩性能更好</p>
+<p>3）AvroFile</p>
+<p>Avro是<strong>基于行</strong>的存储格式，它在每个文件中都包含<strong>JSON格式的scheme定义</strong>，从而提高了互操作性并允许scheme的变化（删除列、添加列）。除了支持可切分以外，还支持<strong>块压缩</strong>。适合于大量频繁写入宽表数据（字段多列多）的场景，其序列化反序列化很快。</p>
+<p>4）RCFile</p>
+<p>行列混合体，Hive Record Column File（记录列文件），且支持压缩、切分。但不支持schema扩展，如果要添加新的列，必须重写文件。</p>
+<p>5）ORCFile</p>
+<p>优化版的RC，并不是单纯的列式存储格式，ORC有多种文件压缩方式，并且有着很高的压缩比，文件是可分的（Split），ORC文件是以<strong>二进制方式存储</strong>的，不可以直接读取。</p>
+<p>6）ParquetFile</p>
+<p>存储模型主要是由行组、列块、页组成。也是以二进制存储的。所以是不可以直接读取的。文件格式是自解析的。支持块压缩。</p>
+<p>新一代存储格式Arrow</p>
+<p>跨语言平台，是一种列式内存数据结构。主要用于构建数据系统。</p>
+<p><img src="/1690446739903.png" alt="1690446739903"></p>
+<p>促进组件通信，缩减通信时序列化。如果提升数据移动性能的？因为无需进行反序列化，使用内存中数据。</p>
+<p>文件压缩格式</p>
+<p>Linux上使用gzip进食数据压缩，Windows上使用zip进行数据压缩。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">unzip random_data.zip</span><br><span class="line"></span><br><span class="line">du -h random_data</span><br><span class="line"></span><br><span class="line">tar -cvzf random_data.tar.gz random_data</span><br></pre></td></tr></table></figure>
+
+<p>Hadoop支持的压缩对比</p>
+<p><img src="/1690449706807.png" alt="1690449706807"></p>
+<p><img src="/1690449735255.png" alt="1690449735255"></p>
+<p>压缩比高的速度慢，斟酌使用</p>
+<p>HFDS异构存储类型：冷热温冻</p>
+<p>什么是异构存储？</p>
+<p>它是可以根据各个存储介质读写特性不同进行选择。例如冷热数据的UC你出1，对冷数据采取容量大，读写性能不高的存储介质如机械硬盘，对于热数据，可使用SSD硬盘存储。异构特性允许我们<strong>对不同文件选择不同的存储介质</strong>进行保存。</p>
+<p>如何让HDFS知道集群中的数据存储目录是哪种类型存储介质？</p>
+<p>配置属性时主动声明，HDFS并没有自动检测的能力。</p>
+<p>配置参数dfs.datanode.data.dir &#x3D; [SSD]file:&#x2F;&#x2F;&#x2F;grid&#x2F;&#x2F;&#x2F;dn&#x2F;ssd0</p>
+<p>如果目录前没有带上<code>[SSD][DISK][ARCHIVE][RAM_DISK]</code>这四种类型中的任何一种，则默认是DISK类型。</p>
+<p>块存储类型选择策略</p>
+<p>块存储指的是对HDFS文件的数据块副本存储。对于数据的存储介质，HDFS的BlockStoragePolicySuite类内部定义了6种策略。Hot、cold、warn、all_ssd、one_ssd、lazy_persist。前三种根据冷热数据区分，后三种根据磁盘性质区分。</p>
+<p>Hot：用于存储和计算，所有副本都存储在DISK中。</p>
+<p>Cold：仅适用于计算量有限的存储，所有副本都存储在ARCHIVE。</p>
+<p>Warn：部分热和部分冷。热时，存储在DISK中，其余都是ARCHIVE。</p>
+<p>All_SSD：将所有副本存储在SSD中</p>
+<p>one_ssd：用于将副本之一存储在ssd中，其余存储在disk中</p>
+<p>lazy_persist：用于在内存中写入具有单个副本的快。首先将副本写入Ram_Disk，然后将其延迟保存入disk中。</p>
+<p><img src="/1690462643711.png" alt="1690462643711"></p>
+<p>块存储类型选择策略——命令</p>
+<p>列出所有存储策略：hdfs storagepolicies -listPolicies</p>
+<p>设置存储策略：hdfs storagepolicies -setStoragePolicy -path <path> -policy <policy></p>
+<p>取消存储策略：hdfs storagepolicies -unsetStoragePolicy -path <path></p>
+<p>获取存储策略：hdfs storagepolicies -getStoragePolicy -path <path></p>
+<h3 id="案例：冷热温数据异构存储"><a href="#案例：冷热温数据异构存储" class="headerlink" title="案例：冷热温数据异构存储"></a>案例：冷热温数据异构存储</h3><p>step1：配置datanode存储目录，指定存储介质类型</p>
+<p>step2：重启HDFS集群，验证配置</p>
+<p><code>hdfs storagepolicies -setStoragePolicy -path /data/hdfs-test/data_phase/hot -policy HOT</code></p>
+<p>实例：将目录文件设置成HOT类型</p>
+<p>step3：上传文件测试异构存储</p>
+<p>hdfs dfs -put &#x2F;etc&#x2F;profile &#x2F;data&#x2F;hdfs-test&#x2F;data_phase&#x2F;hot</p>
+<p>step4：查看不同存储策略文件的block位置</p>
+<p>hdfs fsck &#x2F;data&#x2F;hdfs-test&#x2F;data_phase&#x2F;hot&#x2F;profile -files -blocks -locations</p>
+<p>HDFS内存存储策略支持——Lazy Persist介绍</p>
+<p>Datanode异步地将内存中数据刷新到磁盘，从而减少代价较高的磁盘IO操作。</p>
+<p><img src="/1690505590056.png" alt="1690505590056"></p>
+<p>内存的异步持久化存储是指数据不是马上落盘，而是懒惰的、延时地进行处理。</p>
+<p>虚拟内存盘配置：mount -t tmpfs -o size&#x3D;1g tmpfs &#x2F;mnt&#x2F;dn-tmpfs&#x2F;</p>
+<p>内存存储介质设置：将机器中已经完成好的虚拟内存配置到dfs.datanode.data.dir中，其次还要带上RAM_DISK标签。</p>
+<p>参数设置优化：dfs.storage.policy.enabled是否开启异构存储，默认true开启。</p>
+<p>​			   dfs.datanode.max.locked.memory 用于在数据节点上的内存中缓存块副本的内存量（字节）。</p>
+<p>​	 		    默认情况下，参数设置为0，禁用内存中缓存。</p>
+<p>step4：在目录上设置存储策略</p>
+<p>hdfs storagepolicies -setStoragePolicy -path <path> -policy LAZY_PERSIST</p>
+<h2 id="HDFS集群管理与运维"><a href="#HDFS集群管理与运维" class="headerlink" title="HDFS集群管理与运维"></a>HDFS集群管理与运维</h2><p>HDFS数据迁移</p>
+<p>要考虑带宽、性能、还有其他因素。</p>
+<p>DistCp：分布式拷贝工具，定位用于数据迁移，定期在集群之间和集群内部备份数据。底层使用MapReduce在集群之间或并行在同一集群内复制文件，执行复制的MapReduce只有Mapper阶段。</p>
+<p><img src="/1690507671997.png" alt="1690507671997"></p>
+<p>其中 source_path、target_path 需要带上地址前缀以区分不同的集群</p>
+<p>场景：安全模型现场探究</p>
+<p>在安全模式下，我们可以浏览文件系统目录层次结构，但是却无法创建文件夹，安全模式下的文件系统类似处于一种不可读的特殊状态。</p>
+<p>Hadoop中的安全模式safemode是NameNode的维护状态，在此状态下NameNode不允许对文件系统进行任何更改，可以接收读数据请求。</p>
+<p>自动进入时间：HDFS集群启动时，当<strong>NameNode启动成功</strong>之后，此时集群就会<strong>自动进入安全模式</strong>。</p>
+<p>自动离开条件（hdfs-site.xml、hdfs-default.xml）：</p>
+<p><img src="/1690511466282.png" alt="1690511466282"></p>
+<p>手动获取安全模式状态信息：hdfs dfsadmin -safemode get</p>
+<p>手动进入命令：hdfs dfsadmin -safemode enter</p>
+<p>手动进入安全模式对于集群维护或者升级的时候非常有用，在这是HDFS的数据是只读的。</p>
+<p>手动离开命令：hdfs dfsadmin -safemode leave</p>
+<p>短路本地读取：</p>
+<p>在HDFS中,不管是Local Reads ( DFSClient和Datanode在同一个节点)还是Remote Reads ( DFSClient和Datanode不在同一个节点) , 底层处理方式都是一样的,都是先由Datanode读取数据,然后再通过RPC (基于TCP )把数据传给DFSClient。这样处理是比较简单的,但是性能会受到一-些影响,因为需要Datanode在中间做一次中转。</p>
+<p>尤其，L<strong>ocalReads的时候，既然DFSClient和数据是在一个机器上面，那么很自然想到，让DFSClient绕开Datanode自己去读取数据</strong>。</p>
+<p>安全性改进版设计实现（1）</p>
+<p>配置（1）–libhadoop.so</p>
+<p>因为java不能直接操作unix domain socket，所以需要安装Hadoop的Native包libhadoop.so。在编译Hadoop源码的时候可以通过native模块获取，可以用如下命令来检查native包是否安装好。</p>
+<p><code>hadoop checknative</code></p>
+<p>配置（2）–hdfs-site.xml</p>
+<p>dfs.client.read.shortcircuit 是打开短路本地读取功能的开关。</p>
+<p>dfs.domain.socket.path 是datanode和DFSClient之间沟通的Socket的本地路径</p>
+<p>还要确保Socket本地路径提前创建好 mkdir -p &#x2F;var&#x2F;lib&#x2F;hadoop-hdfs</p>
+<p>注意：创建的是文件夹hadoop-hdfs，而上述配置中的dn_socket是Datanode自己创建的，不是文件夹。</p>
+<p>如何确认配置生效？</p>
+<p>1.查看Datanode的日志，如下图所示即可代表Unix Domain Socket被启用了</p>
+<p><img src="/1690514623268.png" alt="1690514623268"></p>
+<p>2.读取一个文件到本地</p>
+<p>使用命令找出文件的数据块位置信息，到对应的机器上进行本地下载操作。</p>
+<p>下载完毕，打开Datanode的日志，日志中的下面信息就表明读取的时候用到了ShortCircuitLocalReads。</p>
+<p><img src="/1690514738649.png" alt="1690514738649"></p>
+<p>3.ReadStatistics API</p>
+<p>通过HDFSDataInputStream的getReadStatistics API来获取读取数据的统计信息</p>
+<p>安全性改进版设计实现（2）</p>
+<p>借助Unix Domain Socket ，可以让A打开文件得到一个文件描述符，然后把文件描述符传递给B，B就能读取文件里面的内容了即使它没有相应的权限。</p>
+<p>在HDFS的场景中，A就是Datanode，B就是DFSClient，需要读取的文件就是Datanode数据目录中的某个文件。</p>
+<p>磁盘均衡器</p>
+<p>在HDFS中，Datanode负责最终数据Block的存储，在所有机器上的磁盘之间分配数据块。当写入新的Block时，Datanodes将根据选择策略（<strong>循环策略</strong>或<strong>可用空间策略</strong>）来选择block的磁盘</p>
+<p>循环策略：将新的block均匀分布在可用磁盘上，默认此策略。</p>
+<p>可用空间策略：此策略将数据写入具有更多可用空间的磁盘。</p>
+<p>在尝试运行的集群中<strong>采用循环策略</strong>时，Datanode有时会<strong>不均匀地填充其目录</strong>，从而导致某些磁盘已满而其他磁盘却很少使用的情况。如果我们使用<strong>基于可用空间的选择策略</strong>，则每个新写入将进入新添加的空磁盘，从而使用该期间的其他磁盘处于空闲状态。这将在新磁盘上<strong>创建瓶颈</strong>。</p>
+<p>需要一种Intra Datanode Balancing（Datanode内数据块的均匀分布）</p>
+<p><img src="/1690884481248.png" alt="1690884481248"></p>
+<p>HDFS DISK Balancer功能——数据传播报告</p>
+<p>为了衡量集群中哪些计算机遭受数据分布不均的影响,磁盘平衡器定义了<strong>Volume Data Density metric (卷&#x2F;磁盘</strong><br>**数据密度度量标准)<strong>和</strong>Node Data Density metric (节点数据密度度量标准)**。</p>
+<p><img src="/1690884676563.png" alt="1690884676563"></p>
+<p>节点数据密度：比较的是不同机器之间的。</p>
+<p><img src="/1690884842054.png" alt="1690884842054"></p>
+<p><img src="/1690884865363.png" alt="1690884865363"></p>
+<p>HDFS DISK Balancer功能——磁盘平衡</p>
+<p>当指定某个DataNode节点进行disk数据平衡,就可以先计算或读取当前的volume Data Density (磁卷数据密度)。</p>
+<p>有了这些信息,我们可以轻松地确定哪些卷已超量配置,哪些卷已不足。</p>
+<p>为了将数据从一个卷移动到DataNode中的另一个卷, Hadoop开发实现了基于RPC协议的Disk Balancer。</p>
+<p>（我们不生产磁盘，我们只是大磁盘的搬运工。）</p>
+<p>HDFS DISK Balancer开启——默认情况下，Hadoop集群上启动了Disk Balancer功能。通过在Hdfs-site.xml中调整<strong>dfs.disk.balancer.enabled</strong>参数值，选择在Hadoop中是否用磁盘平衡器。</p>
+<h4 id="HDFS-DISK-Balancer相关命令"><a href="#HDFS-DISK-Balancer相关命令" class="headerlink" title="HDFS DISK Balancer相关命令"></a>HDFS DISK Balancer相关命令</h4><p>plan计划：<code>hdfs diskbalancer -plan &lt;datanode&gt;</code></p>
+<p><img src="/1690885679719.png" alt="1690885679719"></p>
+<p>Execute执行：<code>hdfs diskbalancer -execute &lt;JSON file path&gt;</code></p>
+<p>execute命令针对为其生成计划的Datanode执行计划。</p>
+<p>Query查询：<code>hdfs diskbalancer -query &lt;datanode&gt;</code></p>
+<p>query命令从运行计划的Datanode获取HDFS磁盘平衡器的当前状态。</p>
+<h4 id="纠删码技术"><a href="#纠删码技术" class="headerlink" title="纠删码技术"></a>纠删码技术</h4><p>为了提供容错能力, HDFS会根据repl ication factor (复制因子)在不同的DataNode上复制文件块。<br><strong>默认复制因子为3</strong> (注意这里的3指的是1+2&#x3D;3 ,不是额外3个) , 则原始块除外,还将有额外两个副本。每个副本使<br>用100%的存储开销,因此导致200%的存储开销。这些副本也消耗其他资源,例如网络带宽。</p>
+<p><strong>纠删码技术( Erasure coding )简称EC</strong> ,是一种编码容错技术。最早用于通信行业,数据传输中的数据恢复。它通<br>过<strong>对数据进行分块,然后计算出校验数据,使得各个部分的数据产生关联性</strong>。当一部分数据块丢失时,可以通过剩<br>余的数据块和校验块计算出丢失的数据块。</p>
+<p><img src="/1690887852412.png" alt="1690887852412"></p>
+<p>Reed-Solomon（RS）码</p>
+<p>Reed- Solomon ( RS )码是常用的一种纠删码,它有两个参数k和m ,记为RS(k , m)。<br>k个数据块组成一个向量被乘上一个生成矩阵( Generator Matrix ) GT从而得到一个码字( codeword )向量,该向<br>量由k个数据块( d0, d1.. d3 )和m个校验块( c0,c1 )构成。</p>
+<p>纠删编码策略——默认情况下启用<strong>RS-6-3-1024K</strong>策略</p>
+<p>step1：集群和硬件配置</p>
+<p>编码和解码工作会消耗HDFS客户端和DataNode.上的额外CPU。<br>纠删码文件也分布在整个机架上,以实现机架容错。这意味着在读写条带化文件时,大多数操作都是在机架上进行的。因此,网络带宽也非常重要。对于机架容错,拥有足够数量的机架也很重要,每个机架所容纳的块数不超过EC奇偶校验块的数。<strong>机架数量&#x3D; (数据块+奇偶校验块) &#x2F;奇偶校验块</strong>后取整。</p>
+<p>step2：纠删码策略设置</p>
+<p>纠删码策略由参数dfs. namenode. ec. system. default. policy指定,默认是<strong>RS-6-3-1024k</strong> ,其他策略默认是禁用的。可以通过<code>hdfs ec [-enablePolicy -policy &lt;policyName&gt;]</code>命令启用策略集。</p>
+<h4 id="动态扩容、节点服役"><a href="#动态扩容、节点服役" class="headerlink" title="动态扩容、节点服役"></a>动态扩容、节点服役</h4><p>节点上线:已有HDFS集群容量已不能满足存储数据的需求,需要在原有集群基础上动态添加新的DataNode节点。</p>
+<p>step1：新机器基础环境准备</p>
+<p>主机名和IP是否对应，Hosts映射，防火墙和时间同步。能否SSH免密登录以及JDK环境是否准备充分。</p>
+<p>step2：Hadoop配置</p>
+<p>修改namenode节点workers配置文件,增加新节点主机名,便于后续一键启停。</p>
+<p>从namenode节点复制hadoop安装包到新节点,注意不包括<strong>hadoop. tmp. dir</strong>指定的数据存储目录。</p>
+<p>新机器上配置hadoop环境变量</p>
+<p>step3：手动启动Datanode进程</p>
+<p>hdfs –daemon start datanode</p>
+<p>step4：datanode负载均衡服务</p>
+<p>首先要设置数据传输带宽：hdfs dfsadmin -setBalancerBandwidth 104857600</p>
+<p>然后启动Balancer，等待集群自均衡完成即可：hdfs balancer -threshold 5</p>
+<h4 id="动态缩容、节点退役"><a href="#动态缩容、节点退役" class="headerlink" title="动态缩容、节点退役"></a>动态缩容、节点退役</h4><p>节点下线:服务器需要进行退役更换,需要在当下的集群中停止某些机器上datanode的服务。</p>
+<p>step1：添加退役节点</p>
+<p>在namenode机器的<strong>hdfs-site. xml</strong>配置文件中需要提前配置<strong>dfs. hosts. exclude属性</strong>,该属性指向的文件就是所谓的黑名单列表,会被namenode排除在集群之外。如果文件内容为空,则意味着不禁止任何机器。</p>
+<p>step2：刷新集群</p>
+<p>在namenode所在的机器刷新节点：hdfs dfsadmin -refreshNodes</p>
+<p>等待退役节点状态为decommissioned（所有块已经复制完成）</p>
+<p>黑白名单</p>
+<p>白名单——允许哪些机器加入到当前的HDFS集群中，是一种准入机制。（参数dfs.hosts指定）</p>
+<p>黑名单——禁止哪些机器加入到当前的HDFS集群中，是一种禁入机制。（参数dfs.hosts.exclude指定）</p>
+<p>高可用（HA）</p>
+<p>单点故障（SFOF）是指系统中某一点一旦失效，就会让整个系统无法运作。</p>
+<p>解决方法：给单点故障设置备份，形成主备架构。</p>
+<p>MapReduce</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://cimaog.top">Cimaog</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://cimaog.top/2023/07/15/Hadoop/">https://cimaog.top/2023/07/15/Hadoop/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://cimaog.top" target="_blank">CimaogのBighouse</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></div><div class="post_share"><div class="social-share" data-image="https://w.wallhaven.cc/full/yx/wallhaven-yx7p77.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/07/24/Hadoop%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"><img class="prev-cover" src="https://w.wallhaven.cc/full/yx/wallhaven-yx7p77.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Hadoop集群搭建</div></div></a></div><div class="next-post pull-right"><a href="/2023/06/28/SQL%E6%80%BB%E7%BB%93/"><img class="next-cover" src="https://w.wallhaven.cc/full/7p/wallhaven-7p6eyo.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">SQL总结</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/07/24/Hadoop%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" title="Hadoop集群搭建"><img class="cover" src="https://w.wallhaven.cc/full/yx/wallhaven-yx7p77.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-24</div><div class="title">Hadoop集群搭建</div></div></a></div><div><a href="/2022/02/21/%E7%A6%BB%E7%BA%BF%E6%95%B0%E4%BB%93/" title="离线数仓"><img class="cover" src="https://w.wallhaven.cc/full/vq/wallhaven-vqxlgm.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-21</div><div class="title">离线数仓</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202004%2F22%2F20200422144832_tifry.jpg&amp;refer=http%3A%2F%2Fc-ssl.duitang.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1661137344&amp;t=a1da2f337fbd4983ffa24791e75e0e71" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Cimaog</div><div class="author-info__description">个人技术博客 | 日常生活分享</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/LavenderEstela" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:295376682luna@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hadoop"><span class="toc-text">Hadoop</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0"><span class="toc-text">HDFS架构概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A4%E8%AF%86%E7%A1%AC%E7%9B%98%E3%80%81RAID%EF%BC%9A"><span class="toc-text">认识硬盘、RAID：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E6%9E%B6%E6%9E%84%EF%BC%9A"><span class="toc-text">存储架构：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%90%8D%EF%BC%9A"><span class="toc-text">文件名：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E6%95%B0%E6%8D%AE%EF%BC%9A"><span class="toc-text">元数据：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E3%80%81%E6%9F%A5%E7%9C%8B%E3%80%81%E4%B8%8A%E4%BC%A0%E3%80%81%E4%B8%8B%E8%BD%BD"><span class="toc-text">常见命令——创建、查看、上传、下载</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%EF%BC%9A%E6%95%B0%E6%8D%AE%E8%88%86%E6%83%85%E4%B8%8A%E6%8A%A5"><span class="toc-text">案例：数据舆情上报</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86"><span class="toc-text">HDFS数据存储与数据管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E6%8E%8C%E6%8F%A1%E4%B8%A4%E7%A7%8D%E6%A0%BC%E5%BC%8F%E2%80%94%E2%80%94ORC%E5%92%8CParquet"><span class="toc-text">重点掌握两种格式——ORC和Parquet</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%EF%BC%9A%E5%86%B7%E7%83%AD%E6%B8%A9%E6%95%B0%E6%8D%AE%E5%BC%82%E6%9E%84%E5%AD%98%E5%82%A8"><span class="toc-text">案例：冷热温数据异构存储</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E9%9B%86%E7%BE%A4%E7%AE%A1%E7%90%86%E4%B8%8E%E8%BF%90%E7%BB%B4"><span class="toc-text">HDFS集群管理与运维</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HDFS-DISK-Balancer%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="toc-text">HDFS DISK Balancer相关命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%A0%E5%88%A0%E7%A0%81%E6%8A%80%E6%9C%AF"><span class="toc-text">纠删码技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E6%89%A9%E5%AE%B9%E3%80%81%E8%8A%82%E7%82%B9%E6%9C%8D%E5%BD%B9"><span class="toc-text">动态扩容、节点服役</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E7%BC%A9%E5%AE%B9%E3%80%81%E8%8A%82%E7%82%B9%E9%80%80%E5%BD%B9"><span class="toc-text">动态缩容、节点退役</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/07/24/Hadoop%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" title="Hadoop集群搭建"><img src="https://w.wallhaven.cc/full/yx/wallhaven-yx7p77.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hadoop集群搭建"/></a><div class="content"><a class="title" href="/2023/07/24/Hadoop%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" title="Hadoop集群搭建">Hadoop集群搭建</a><time datetime="2023-07-24T00:12:58.000Z" title="发表于 2023-07-24 08:12:58">2023-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/15/Hadoop/" title="Hadoop【连载中】"><img src="https://w.wallhaven.cc/full/yx/wallhaven-yx7p77.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hadoop【连载中】"/></a><div class="content"><a class="title" href="/2023/07/15/Hadoop/" title="Hadoop【连载中】">Hadoop【连载中】</a><time datetime="2023-07-15T12:43:58.000Z" title="发表于 2023-07-15 20:43:58">2023-07-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/28/SQL%E6%80%BB%E7%BB%93/" title="SQL总结"><img src="https://w.wallhaven.cc/full/7p/wallhaven-7p6eyo.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SQL总结"/></a><div class="content"><a class="title" href="/2023/06/28/SQL%E6%80%BB%E7%BB%93/" title="SQL总结">SQL总结</a><time datetime="2023-06-28T06:37:32.000Z" title="发表于 2023-06-28 14:37:32">2023-06-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/24/MachineLearning/" title="Machine Learning"><img src="https://w.wallhaven.cc/full/7p/wallhaven-7p6eyo.pngMac'gu'b" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Machine Learning"/></a><div class="content"><a class="title" href="/2023/05/24/MachineLearning/" title="Machine Learning">Machine Learning</a><time datetime="2023-05-24T09:08:10.000Z" title="发表于 2023-05-24 17:08:10">2023-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="Machine Learning"><img src="https://w.wallhaven.cc/full/7p/wallhaven-7p6eyo.pngMac'gu'b" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Machine Learning"/></a><div class="content"><a class="title" href="/2023/05/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="Machine Learning">Machine Learning</a><time datetime="2023-05-24T09:08:10.000Z" title="发表于 2023-05-24 17:08:10">2023-05-24</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://w.wallhaven.cc/full/yx/wallhaven-yx7p77.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By Cimaog</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a><span class="footer-separator">|</span><span>备案 </span><a target="_blank" rel="noopener" href="http://www.beian.miit.gov.cn/">豫ICP备2022017550号</a></div><div class="footer_custom_text">相逢即是缘，来了就留下叭~😄</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="704776923" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true"> </div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/nipsilon.model.json"},"display":{"position":"right","width":280,"height":400},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
